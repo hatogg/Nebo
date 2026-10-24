@@ -3,6 +3,7 @@ name: Build
 on:
   push:
     branches: [main]
+    paths-ignore: ['apk/**', 'README.md', 'docs/**']
   workflow_dispatch:
 
 permissions:

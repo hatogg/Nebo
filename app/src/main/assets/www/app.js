@@ -15,6 +15,12 @@
 
   function plural(n, a, b, c) { const m10 = n % 10, m100 = n % 100; if (m10 === 1 && m100 !== 11) return a; if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return b; return c; }
   function hhmm(t) { const d = new Date(t); return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
+  function since(t) {
+    const d = new Date(t), n = new Date(), p = (x) => String(x).padStart(2, '0');
+    if (d.toDateString() === n.toDateString()) return hhmm(t);
+    if (d.getFullYear() === n.getFullYear()) return p(d.getDate()) + '.' + p(d.getMonth() + 1) + ' ' + hhmm(t);
+    return p(d.getDate()) + '.' + p(d.getMonth() + 1) + '.' + d.getFullYear();
+  }
   function ago(t) {
     if (!t) return '';
     const s = Math.round((Date.now() - t) / 1000);
@@ -76,7 +82,7 @@
     } else if (a.homeActive) {
       hl.className = 'home-line alert';
       hl.textContent = 'Тривога · ' + a.homeShort;
-      $('countLine').textContent = (a.homeSince ? 'з ' + hhmm(a.homeSince) + '. ' : '') + 'Всього ' + a.count + ' ' + plural(a.count, 'область', 'області', 'областей');
+      $('countLine').textContent = (a.homeSince ? 'з ' + since(a.homeSince) + '. ' : '') + 'Всього ' + a.count + ' ' + plural(a.count, 'область', 'області', 'областей');
     } else {
       hl.className = 'home-line calm';
       hl.textContent = a.homeShort + ' — тихо';

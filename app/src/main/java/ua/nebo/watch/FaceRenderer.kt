@@ -119,7 +119,7 @@ class FaceRenderer(private val context: Context) {
         c.drawText(r?.short ?: home, 205f, card.top + 108f, paint(manBold, 28f, Color.WHITE))
         val sub = if (active) {
             val t = state.since[r!!.name] ?: 0L
-            if (t > 0) "з " + SimpleDateFormat("HH:mm", Locale.US).format(Date(t)) else "оголошено зараз"
+            if (t > 0) "з " + sinceText(t) else "оголошено зараз"
         } else "тривоги немає"
         c.drawText(sub, 205f, card.top + 140f, paint(manSemi, 20f, Color.parseColor(if (active) "#FFB3B5" else "#9FE3BD")))
 
@@ -135,6 +135,20 @@ class FaceRenderer(private val context: Context) {
     }
 
     companion object {
+        /** «14:32» сьогодні, «24.10 21:05» цього року, «04.04.2022» — для давніх тривог. */
+        fun sinceText(t: Long): String {
+            val now = java.util.Calendar.getInstance()
+            val c = java.util.Calendar.getInstance().apply { timeInMillis = t }
+            val sameYear = c.get(java.util.Calendar.YEAR) == now.get(java.util.Calendar.YEAR)
+            val sameDay = sameYear && c.get(java.util.Calendar.DAY_OF_YEAR) == now.get(java.util.Calendar.DAY_OF_YEAR)
+            val pattern = when {
+                sameDay -> "HH:mm"
+                sameYear -> "dd.MM HH:mm"
+                else -> "dd.MM.yyyy"
+            }
+            return SimpleDateFormat(pattern, Locale.US).format(Date(t))
+        }
+
         fun plural(n: Int, one: String, few: String, many: String): String {
             val m10 = n % 10
             val m100 = n % 100
