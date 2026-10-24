@@ -1,0 +1,196 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:generateDebugBuildConfig
+> Task :app:generateDebugResValues
+> Task :app:checkDebugAarMetadata
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :app:mergeDebugResources
+
+> Task :app:processDebugMainManifest
+/home/runner/work/Nebo/Nebo/app/src/main/AndroidManifest.xml:29:5-75:19 Warning:
+	application@android:allowBackup was tagged at AndroidManifest.xml:29 to replace other declarations but no other declaration present
+/home/runner/work/Nebo/Nebo/app/src/main/AndroidManifest.xml:29:5-75:19 Warning:
+	application@android:label was tagged at AndroidManifest.xml:29 to replace other declarations but no other declaration present
+/home/runner/work/Nebo/Nebo/app/src/main/AndroidManifest.xml:29:5-75:19 Warning:
+	application@android:icon was tagged at AndroidManifest.xml:29 to replace other declarations but no other declaration present
+/home/runner/work/Nebo/Nebo/app/src/main/AndroidManifest.xml:29:5-75:19 Warning:
+	application@android:theme was tagged at AndroidManifest.xml:29 to replace other declarations but no other declaration present
+
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :app:javaPreCompileDebug
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets
+> Task :app:compressDebugAssets
+> Task :app:mergeDebugJniLibFolders
+> Task :app:processDebugResources
+> Task :app:checkDebugDuplicateClasses
+> Task :app:mergeDebugNativeLibs
+> Task :app:mergeLibDexDebug
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:generateReleaseBuildConfig
+> Task :app:checkReleaseAarMetadata
+> Task :app:generateReleaseResValues
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libDspConfig.so, libRtkAesJni.so, libpl_droidsonroids_gif.so.
+
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+
+> Task :app:processReleaseMainManifest
+/home/runner/work/Nebo/Nebo/app/src/main/AndroidManifest.xml:29:5-75:19 Warning:
+	application@android:allowBackup was tagged at AndroidManifest.xml:29 to replace other declarations but no other declaration present
+/home/runner/work/Nebo/Nebo/app/src/main/AndroidManifest.xml:29:5-75:19 Warning:
+	application@android:label was tagged at AndroidManifest.xml:29 to replace other declarations but no other declaration present
+/home/runner/work/Nebo/Nebo/app/src/main/AndroidManifest.xml:29:5-75:19 Warning:
+	application@android:icon was tagged at AndroidManifest.xml:29 to replace other declarations but no other declaration present
+/home/runner/work/Nebo/Nebo/app/src/main/AndroidManifest.xml:29:5-75:19 Warning:
+	application@android:theme was tagged at AndroidManifest.xml:29 to replace other declarations but no other declaration present
+
+> Task :app:processReleaseManifest
+> Task :app:processReleaseManifestForPackage
+> Task :app:buildKotlinToolingMetadata
+> Task :app:mergeReleaseResources
+> Task :app:javaPreCompileRelease
+> Task :app:extractProguardFiles
+> Task :app:mergeReleaseJniLibFolders
+> Task :app:mergeReleaseNativeLibs
+
+> Task :app:stripReleaseDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libDspConfig.so, libRtkAesJni.so, libpl_droidsonroids_gif.so.
+
+> Task :app:extractReleaseNativeSymbolTables
+> Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:processReleaseResources
+> Task :app:desugarDebugFileDependencies
+> Task :app:desugarReleaseFileDependencies
+> Task :app:mergeReleaseStartupProfile
+> Task :app:compileDebugKotlin
+> Task :app:mergeExtDexDebug
+> Task :app:mergeReleaseArtProfile
+> Task :app:mergeReleaseShaders
+> Task :app:mergeExtDexRelease
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets
+> Task :app:compressReleaseAssets
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:collectReleaseDependencies
+> Task :app:optimizeReleaseResources
+> Task :app:sdkReleaseDependencyData
+> Task :app:validateSigningRelease
+> Task :app:writeReleaseAppMetadata
+> Task :app:writeReleaseSigningConfigVersions
+
+> Task :app:compileDebugKotlin
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:6:8 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:40:54 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:41:29 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:42:27 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:43:31 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:44:36 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:45:34 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:46:32 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:47:36 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:48:43 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:49:41 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:50:67 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:51:35 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:52:34 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:53:35 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:54:31 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:55:36 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:56:34 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:57:100 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:58:74 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:59:17 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:14:8 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:180:42 'fun unbindAudioDevice(): Completable' is deprecated. Will be delete.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:214:36 'fun sendNotification(type: Int, name: String?, content: String?): Completable' is deprecated. Use fcSDK.notificationAbility.send instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:214:53 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:221:45 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:221:84 'fun isSupportNotification(flag: Int): Boolean' is deprecated. Using this method to determine new types may not be correct.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:221:113 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:222:36 'fun sendNotification(type: Int, name: String?, content: String?): Completable' is deprecated. Use fcSDK.notificationAbility.send instead.
+
+> Task :app:compileReleaseKotlin
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:6:8 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:40:54 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:41:29 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:42:27 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:43:31 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:44:36 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:45:34 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:46:32 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:47:36 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:48:43 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:49:41 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:50:67 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:51:35 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:52:34 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:53:35 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:54:31 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:55:36 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:56:34 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:57:100 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:58:74 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/NotifyListener.kt:59:17 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:14:8 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:180:42 'fun unbindAudioDevice(): Completable' is deprecated. Will be delete.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:214:36 'fun sendNotification(type: Int, name: String?, content: String?): Completable' is deprecated. Use fcSDK.notificationAbility.send instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:214:53 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:221:45 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:221:84 'fun isSupportNotification(flag: Int): Boolean' is deprecated. Using this method to determine new types may not be correct.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:221:113 'annotation class FcNotificationType : Annotation' is deprecated. Use FcAppType or FcTelephony instead.
+w: file:///home/runner/work/Nebo/Nebo/app/src/main/java/ua/nebo/watch/Watch.kt:222:36 'fun sendNotification(type: Int, name: String?, content: String?): Completable' is deprecated. Use fcSDK.notificationAbility.send instead.
+
+> Task :app:compileDebugJavaWithJavac
+> Task :app:processDebugJavaRes
+> Task :app:mergeDebugJavaResource
+> Task :app:dexBuilderDebug
+> Task :app:mergeProjectDexDebug
+> Task :app:compileReleaseJavaWithJavac
+> Task :app:generateReleaseLintVitalReportModel
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+> Task :app:dexBuilderRelease
+> Task :app:mergeReleaseGlobalSynthetics
+> Task :app:processReleaseJavaRes
+> Task :app:mergeReleaseJavaResource
+> Task :app:mergeDexRelease
+> Task :app:compileReleaseArtProfile
+> Task :app:packageRelease
+> Task :app:createReleaseApkListingFileRedirect
+> Task :app:lintVitalAnalyzeRelease
+> Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :app:assembleRelease
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1792884501266.json
+
+[Incubating] Problems report is available at: file:///home/runner/work/Nebo/Nebo/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1m 38s
+82 actionable tasks: 82 executed

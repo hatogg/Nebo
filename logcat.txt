@@ -1,0 +1,250 @@
+10-24 23:31:21.166   520   533 V SplashScreenExceptionList: SplashScreen checking exception for package ua.nebo.watch (target sdk:34) -> false
+10-24 23:31:21.169   520   533 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=ua.nebo.watch/.MainActivity (has extras)} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+10-24 23:31:21.310   520  1977 D CoreBackPreview: Window{5081674 u0 Splash Screen ua.nebo.watch}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@4b80737, mPriority=0, mIsAnimationCallback=false}
+10-24 23:31:21.354   520   542 I BLASTSyncEngine: Unfinished container: Task{d90c68b #8 type=standard A=10192:ua.nebo.watch}
+10-24 23:31:21.354   520   542 I BLASTSyncEngine: Unfinished container: ActivityRecord{14a945a u0 ua.nebo.watch/.MainActivity t8}
+10-24 23:31:21.702   520   573 I AppsFilter: interaction: PackageSetting{600e4be ua.nebo.watch/10192} -> PackageSetting{d07791f com.google.android.youtube/10139} BLOCKED
+10-24 23:31:21.702   520   573 I AppsFilter: interaction: PackageSetting{600e4be ua.nebo.watch/10192} -> PackageSetting{10346c com.google.android.googlequicksearchbox/10132} BLOCKED
+10-24 23:31:21.703   520   573 I AppsFilter: interaction: PackageSetting{600e4be ua.nebo.watch/10192} -> PackageSetting{e676a35 com.google.android.as/10126} BLOCKED
+10-24 23:31:21.703   520   573 I AppsFilter: interaction: PackageSetting{600e4be ua.nebo.watch/10192} -> PackageSetting{e628eca com.google.android.devicelockcontroller/10172} BLOCKED
+10-24 23:31:21.703   520   573 I AppsFilter: interaction: PackageSetting{600e4be ua.nebo.watch/10192} -> PackageSetting{1b4883b com.google.android.contacts/10154} BLOCKED
+10-24 23:31:21.703   520   573 I AppsFilter: interaction: PackageSetting{600e4be ua.nebo.watch/10192} -> PackageSetting{4022b58 com.google.android.partnersetup/10124} BLOCKED
+10-24 23:31:21.704   520   573 I AppsFilter: interaction: PackageSetting{600e4be ua.nebo.watch/10192} -> PackageSetting{c3174b1 com.google.android.cellbroadcastreceiver/10178} BLOCKED
+10-24 23:31:21.704   520   573 I AppsFilter: interaction: PackageSetting{600e4be ua.nebo.watch/10192} -> PackageSetting{482cd96 com.google.android.inputmethod.latin/10140} BLOCKED
+10-24 23:31:21.815   520   550 I ActivityManager: Start proc 2714:ua.nebo.watch/u0a192 for next-top-activity {ua.nebo.watch/ua.nebo.watch.MainActivity}
+10-24 23:31:21.900   520   539 V WindowManager:     info={id=6 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{dd7aa30 Task{d90c68b #8 type=standard A=10192:ua.nebo.watch}}} m=OPEN f=MOVE_TO_TOP leash=Surface(name=Task=8)/@0xd592b1a sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0},{WCT{RemoteToken{bce46a9 Task{5c3b891 #1 type=home}}} m=TO_BACK f=NONE leash=Surface(name=Task=1)/@0xfd09351 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0},{null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{893c359 token=android.os.Binder@c676ba0})/@0xd0085c5 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0}]}
+10-24 23:31:21.947  2714  2714 I ua.nebo.watch: Late-enabling -Xcheck:jni
+10-24 23:31:21.978  2714  2714 I ua.nebo.watch: Using CollectorTypeCC GC.
+10-24 23:31:21.978  2714  2714 W ua.nebo.watch: Unexpected CPU variant for x86: x86_64.
+10-24 23:31:21.978  2714  2714 W ua.nebo.watch: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+10-24 23:31:22.336  2714  2714 W ziparchive: Unable to open '/data/app/~~JrtcPOh-dETn5whU2BhuLA==/ua.nebo.watch-qkQ5A-vYkzKCoSIrQU2fBg==/base.dm': No such file or directory
+10-24 23:31:22.336  2714  2714 W ziparchive: Unable to open '/data/app/~~JrtcPOh-dETn5whU2BhuLA==/ua.nebo.watch-qkQ5A-vYkzKCoSIrQU2fBg==/base.dm': No such file or directory
+10-24 23:31:22.465   520   550 I ActivityManager: Start proc 2804:com.android.chrome/u0a150 for service {com.android.chrome/org.chromium.chrome.browser.customtabs.CustomTabsConnectionService}
+10-24 23:31:22.561  2714  2714 D nativeloader: Configuring clns-6 for other apk /data/app/~~JrtcPOh-dETn5whU2BhuLA==/ua.nebo.watch-qkQ5A-vYkzKCoSIrQU2fBg==/base.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~JrtcPOh-dETn5whU2BhuLA==/ua.nebo.watch-qkQ5A-vYkzKCoSIrQU2fBg==/lib/x86_64:/data/app/~~JrtcPOh-dETn5whU2BhuLA==/ua.nebo.watch-qkQ5A-vYkzKCoSIrQU2fBg==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/ua.nebo.watch
+10-24 23:31:22.583  2714  2714 V GraphicsEnvironment: ANGLE GameManagerService for ua.nebo.watch: false
+10-24 23:31:22.583  2714  2714 V GraphicsEnvironment: ua.nebo.watch is not listed in per-application setting
+10-24 23:31:22.677  2714  2714 I Nebo    : start 1.2 Android 14 Google sdk_gphone64_x86_64
+10-24 23:31:22.709  2714  2714 I g       : FcSDK_v3.0.2.7
+10-24 23:31:22.891  1046  1436 W TelephonyPermissions: reportAccessDeniedToReadIdentifiers:ua.nebo.watch:getAllSubInfoList:1
+10-24 23:31:23.090   520   803 I SdkSandboxManager: No SDKs used. Skipping SDK data reconcilation for CallingInfo{mUid=10192, mPackageName='ua.nebo.watch, mAppProcessToken='null'}
+10-24 23:31:24.036  2714  2714 W ua.nebo.watch: Entry not found
+10-24 23:31:24.054   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{4d84201 com.android.cts.priv.ctsshim/10190} BLOCKED
+10-24 23:31:24.057   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{1f698a6 com.google.android.youtube/10139} BLOCKED
+10-24 23:31:24.057   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{ee5c2e7 com.android.internal.display.cutout.emulation.corner/10025} BLOCKED
+10-24 23:31:24.057   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{ee08e94 com.android.internal.display.cutout.emulation.double/10048} BLOCKED
+10-24 23:31:24.057   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{b85fd3d com.google.android.googlequicksearchbox/10132} BLOCKED
+10-24 23:31:24.057   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{5639932 com.google.android.onetimeinitializer/10125} BLOCKED
+10-24 23:31:24.057   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{2c1a683 com.google.android.ext.shared/10101} BLOCKED
+10-24 23:31:24.057   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{9820000 com.android.internal.systemui.navbar.gestural_wide_back/10007} BLOCKED
+10-24 23:31:24.057   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{85a3039 com.android.virtualmachine.res/10184} BLOCKED
+10-24 23:31:24.057   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{e2e167e com.google.android.federatedcompute/10185} BLOCKED
+10-24 23:31:24.057   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{7ee27df com.android.managedprovisioning.auto_generated_rro_product__/10024} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{6071c2c com.android.carrierconfig.auto_generated_rro_vendor__/10078} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{1a496f5 com.android.systemui.emulation.pixel_3_xl/10034} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{f911c8a com.android.systemui.emulation.pixel_4_xl/10059} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{43762fb com.android.systemui.emulation.pixel_fold/10009} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{4dfcf18 com.android.simappdialog.auto_generated_rro_product__/10030} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{8f4ad71 com.android.htmlviewer/10115} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{36c7756 com.google.android.health.connect.backuprestore/10183} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{40f33d7 com.android.systemui.auto_generated_rro_product__/10031} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{b8ec4c4 com.google.android.apps.messaging/10130} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{f55afad com.google.android.soundpicker/10137} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{fd0b2e2 com.google.android.marvin.talkbackoverlay/10077} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{f293673 com.google.android.configupdater/10129} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{3156930 com.android.internal.emulation.pixel_3a_xl/10044} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{14a99a9 com.android.internal.emulation.pixel_6_pro/10018} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{94b1b2e com.android.internal.emulation.pixel_7_pro/10004} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{ad6c6cf com.android.internal.emulation.pixel_8_pro/10058} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{11fe85c com.android.internal.emulation.pixel_3a/10053} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{68a2765 com.android.internal.emulation.pixel_4a/10011} BLOCKED
+10-24 23:31:24.059   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{df1bc3a com.android.internal.emulation.pixel_6a/10023} BLOCKED
+10-24 23:31:24.061   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{7f12e48 com.android.internal.emulation.pixel_7a/10033} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{17ad4e1 com.google.android.overlay.googlewebview/10049} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{52f6206 com.google.android.hotspot2.osulogin/10189} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{baec0c7 com.android.simappdialog/10111} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{90ee6f4 com.android.internal.display.cutout.emulation.hole/10073} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{a6ede1d com.android.internal.display.cutout.emulation.tall/10065} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{4f9892 com.android.internal.systemui.navbar.threebutton/10068} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{54ca263 com.android.camera2/10145} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{6ad7e60 com.android.systemui.auto_generated_rro_vendor__/10076} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{2a03f19 com.google.android.deskclock/10152} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{7caabde com.android.internal.systemui.navbar.twobutton/10020} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{d5d01bf com.google.android.as/10126} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{fdc208c com.google.android.gm/10143} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{aecb3d5 com.android.internal.systemui.navbar.gestural_extra_wide_back/10045} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{151a7ea com.android.systemui.emulation.pixel_3/10015} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{9e9fadb com.android.systemui.emulation.pixel_4/10037} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{370b978 com.android.systemui.emulation.pixel_5/10071} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{a51b851 com.android.systemui.emulation.pixel_6/10074} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{a9a58b6 com.android.systemui.emulation.pixel_7/10072} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{d8369b7 com.android.systemui.emulation.pixel_8/10070} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{5b3f524 com.android.nfc.auto_generated_rro_product__/10027} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{28888d com.android.printspooler/10104} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{4eb4a42 com.android.emergency.auto_generated_rro_product__/10041} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{9daea53 com.google.android.connectivity.resources.goldfish.overlay/10079} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{4cd3f90 com.android.dreams.basic/10103} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{e222089 com.google.android.networkstack.tethering.emulator/10022} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{d67c88e com.android.providers.settings.auto_generated_rro_product__/10002} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{1fd8af com.google.android.as.oss/10122} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{7eec4bc com.android.traceur.auto_generated_rro_product__/10005} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{6033c45 com.google.android.devicelockcontroller/10172} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{e1bdf9a com.google.android.dialer/10128} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{b1b50cb com.android.internal.emulation.pixel_3/10046} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{54170a8 com.android.internal.emulation.pixel_4/10060} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{72057c1 com.android.internal.emulation.pixel_5/10012} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{3c85b66 com.android.internal.emulation.pixel_6/10038} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{f0c2ea7 com.android.internal.emulation.pixel_7/10067} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{a90ef54 com.android.internal.emulation.pixel_8/10039} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{799aefd com.google.android.captiveportallogin/10113} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{46ec7f2 com.android.musicfx/10088} BLOCKED
+10-24 23:31:24.062   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{b430e43 com.google.android.apps.docs/10153} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{bd3255a com.google.android.apps.maps/10155} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{4b7acc0 com.google.android.modulemetadata/10147} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{5573df9 com.google.android.markup/10134} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{29d713e com.android.providers.settings.auto_generated_rro_vendor__/10080} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{97e4b9f com.google.android.rkpdapp/10171} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{1cad4ec com.google.android.contacts/10154} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{ac4c0b5 com.android.server.telecom.auto_generated_rro_product__/10032} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{97b634a com.google.android.overlay.googleconfig/10055} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{70602bb com.android.chrome/10150} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{a0653d8 com.android.bips.auto_generated_rro_product__/10035} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{34db331 com.google.android.apps.customization.pixel/10144} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{d946a16 com.google.android.tag/10082} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{3880f97 com.google.android.overlay.permissioncontroller/10003} BLOCKED
+10-24 23:31:24.063   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{b78d584 com.google.android.partnersetup/10124} BLOCKED
+10-24 23:31:24.074  2714  2714 W ua.nebo.watch: Accessing hidden method Landroid/os/Trace;->isTagEnabled(J)Z (unsupported, reflection, allowed)
+10-24 23:31:24.076  2714  2714 W ua.nebo.watch: Accessing hidden method Landroid/os/Trace;->traceBegin(JLjava/lang/String;)V (unsupported, reflection, allowed)
+10-24 23:31:24.076  2714  2714 W ua.nebo.watch: Accessing hidden method Landroid/os/Trace;->traceEnd(J)V (unsupported, reflection, allowed)
+10-24 23:31:24.076  2714  2714 W ua.nebo.watch: Accessing hidden method Landroid/os/Trace;->asyncTraceBegin(JLjava/lang/String;I)V (unsupported, reflection, allowed)
+10-24 23:31:24.076  2714  2714 W ua.nebo.watch: Accessing hidden method Landroid/os/Trace;->asyncTraceEnd(JLjava/lang/String;I)V (unsupported, reflection, allowed)
+10-24 23:31:24.090   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{19984c6 com.google.android.apps.wallpaper.nexus/10142} BLOCKED
+10-24 23:31:24.090   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{bf60c87 com.google.android.apps.nexuslauncher/10169} BLOCKED
+10-24 23:31:24.090   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{6fea7b4 com.google.android.nearby.halfsheet/10180} BLOCKED
+10-24 23:31:24.091   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{abe6fdd com.android.theme.font.notoserifsource/10066} BLOCKED
+10-24 23:31:24.092   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{b192752 com.google.android.safetycenter.resources/10176} BLOCKED
+10-24 23:31:24.093   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{f1cea23 com.android.internal.display.cutout.emulation.waterfall/10040} BLOCKED
+10-24 23:31:24.096   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{8b88b20 com.android.internal.systemui.navbar.transparent/10029} BLOCKED
+10-24 23:31:24.098   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{57e669e com.google.android.connectivity.resources/10179} BLOCKED
+10-24 23:31:24.098   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{64a057f com.android.providers.contacts.auto_generated_rro_product__/10019} BLOCKED
+10-24 23:31:24.099   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{a6b394c com.google.android.feedback/10163} BLOCKED
+10-24 23:31:24.099   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{7e4bd95 com.google.android.printservice.recommendation/10110} BLOCKED
+10-24 23:31:24.099   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{4664eaa com.google.android.apps.photos/10146} BLOCKED
+10-24 23:31:24.099   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{482324e com.google.android.calendar/10141} BLOCKED
+10-24 23:31:24.100   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{d037a9b com.google.android.documentsui/10098} BLOCKED
+10-24 23:31:24.100   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{8b89e38 com.android.systemui.emulation.pixel_3a_xl/10021} BLOCKED
+10-24 23:31:24.103   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{e209e11 com.android.systemui.emulation.pixel_6_pro/10063} BLOCKED
+10-24 23:31:24.103   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{632ab76 com.android.systemui.emulation.pixel_7_pro/10054} BLOCKED
+10-24 23:31:24.106   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{7152577 com.android.systemui.emulation.pixel_8_pro/10001} BLOCKED
+10-24 23:31:24.106   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{67565e4 com.google.mainline.telemetry/10151} BLOCKED
+10-24 23:31:24.106   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{7600a4d com.android.carrierconfig.auto_generated_rro_product__/10064} BLOCKED
+10-24 23:31:24.107   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{b960902 com.android.providers.partnerbookmarks/10100} BLOCKED
+10-24 23:31:24.107   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{f2ca213 com.android.wallpaper.livepicker/10090} BLOCKED
+10-24 23:31:24.137  2714  3004 I cr_VariationsUtils: Failed reading seed file "/data/user/0/ua.nebo.watch/app_webview/variations_seed_new"
+10-24 23:31:24.138  2714  3004 I cr_VariationsUtils: Failed reading seed file "/data/user/0/ua.nebo.watch/app_webview/variations_seed"
+10-24 23:31:24.167   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{9b82f5f com.android.providers.telephony.auto_generated_rro_product__/10062} BLOCKED
+10-24 23:31:24.193   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{a6a6a0a com.android.phone.auto_generated_rro_vendor__/10081} BLOCKED
+10-24 23:31:24.202   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{95a627b com.google.mainline.adservices/10136} BLOCKED
+10-24 23:31:24.203   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{b9f9898 com.android.imsserviceentitlement/10117} BLOCKED
+10-24 23:31:24.203   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{10278f1 com.google.android.healthconnect.controller/10182} BLOCKED
+10-24 23:31:24.204   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{a4d1cd6 com.android.internal.emulation.pixel_2_xl/10016} BLOCKED
+10-24 23:31:24.207   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{522ab57 com.android.internal.emulation.pixel_3_xl/10056} BLOCKED
+10-24 23:31:24.211   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{c41a644 com.android.internal.emulation.pixel_4_xl/10047} BLOCKED
+10-24 23:31:24.211   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{534b32d com.android.internal.emulation.pixel_fold/10006} BLOCKED
+10-24 23:31:24.211   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{7d63062 com.android.bookmarkprovider/10114} BLOCKED
+10-24 23:31:24.211   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{6bca5f3 com.google.android.overlay.pixelconfigcommon/10014} BLOCKED
+10-24 23:31:24.211   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{5d4e2b0 com.android.systemui.accessibility.accessibilitymenu.auto_generated_rro_product__/10050} BLOCKED
+10-24 23:31:24.211   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{cd65529 com.android.systemui.emulation.pixel_3a/10013} BLOCKED
+10-24 23:31:24.211   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{beaf0ae com.android.systemui.emulation.pixel_4a/10000} BLOCKED
+10-24 23:31:24.211   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{cf1ae4f com.android.systemui.emulation.pixel_6a/10042} BLOCKED
+10-24 23:31:24.211   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{61d79dc com.android.systemui.emulation.pixel_7a/10017} BLOCKED
+10-24 23:31:24.212   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{1d61ae5 com.google.android.settings.intelligence/10118} BLOCKED
+10-24 23:31:24.212   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{f30f029 com.google.android.projection.gearhead/10123} BLOCKED
+10-24 23:31:24.212   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{67969ba com.google.android.uwb.resources/10170} BLOCKED
+10-24 23:31:24.212   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{9b8efae com.android.cts.ctsshim/10191} BLOCKED
+10-24 23:31:24.223   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{b319c09 com.google.android.wifi.resources/10187} BLOCKED
+10-24 23:31:24.226   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{9a05e0e com.google.android.wifi.dialog/10188} BLOCKED
+10-24 23:31:24.227   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{2c4802f com.google.android.apps.wallpaper/10159} BLOCKED
+10-24 23:31:24.227   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{13163c com.google.android.odad/10121} BLOCKED
+10-24 23:31:24.231   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{ce20e6 com.android.settings.auto_generated_rro_product__/10028} BLOCKED
+10-24 23:31:24.233   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{938527d com.android.internal.systemui.navbar.gestural/10051} BLOCKED
+10-24 23:31:24.238   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{fcb6572 com.google.android.apps.youtube.music/10156} BLOCKED
+10-24 23:31:24.238   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{aaf1dc3 com.android.bluetoothmidiservice/10107} BLOCKED
+10-24 23:31:24.238   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{f734640 com.android.storagemanager.auto_generated_rro_product__/10026} BLOCKED
+10-24 23:31:24.239   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{8fc9979 com.google.android.cellbroadcastreceiver/10178} BLOCKED
+10-24 23:31:24.239   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{6e666be com.android.phone.auto_generated_rro_product__/10061} BLOCKED
+10-24 23:31:24.239   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{85bd31f android.auto_generated_rro_product__/10069} BLOCKED
+10-24 23:31:24.239   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{266866c com.android.internal.systemui.navbar.gestural_narrow_back/10052} BLOCKED
+10-24 23:31:24.239   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{6245435 com.google.android.inputmethod.latin/10140} BLOCKED
+10-24 23:31:24.240   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{51e30ca android.auto_generated_rro_vendor__/10075} BLOCKED
+10-24 23:31:24.240   520   598 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{6f4823b com.google.android.apps.restore/10120} BLOCKED
+10-24 23:31:24.254   520   550 I ActivityManager: Start proc 3005:com.google.android.webview:webview_service/u0a135 for service {com.google.android.webview/org.chromium.android_webview.services.VariationsSeedServer}
+10-24 23:31:24.348  1046  1046 D CarrierSvcBindHelper: onPackageAdded: ua.nebo.watch
+10-24 23:31:24.352  1046  1318 D ImsResolver: maybeAddedImsService, packageName: ua.nebo.watch
+10-24 23:31:25.483   834   834 I SafetyLabelChangedBroadcastReceiver: received broadcast packageName: ua.nebo.watch, current user: UserHandle{0}, packageChangeEvent: NEW_INSTALL, intent user: UserHandle{0}
+10-24 23:31:25.493   520   550 I ActivityManager: Start proc 3091:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0ai9000 for  {ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0}
+10-24 23:31:26.251  3091  3091 I cr_WebViewApkApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=false processName=com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0
+10-24 23:31:26.622   520  1984 D ConnectivityService: requestNetwork for uid/pid:10192/2714 activeRequest: null callbackRequest: 72 [NetworkRequest [ REQUEST id=73, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: ua.nebo.watch UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647
+10-24 23:31:26.623   520   756 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=73, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: ua.nebo.watch UnderlyingNetworks: Null] ]
+10-24 23:31:26.623   520   756 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=73, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: ua.nebo.watch UnderlyingNetworks: Null] ]
+10-24 23:31:26.623   520   756 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=73, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: ua.nebo.watch UnderlyingNetworks: Null] ]
+10-24 23:31:26.624   520   756 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=73, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: ua.nebo.watch UnderlyingNetworks: Null] ]
+10-24 23:31:26.925  2979  3288 I Watchcat: Started
+10-24 23:31:27.326   520  1801 I ActivityManager: Background started FGS: Allowed [callingPackage: ua.nebo.watch; callingUid: 10192; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { cmp=ua.nebo.watch/.NeboService }; code:PROC_STATE_TOP; tempAllowListReason:<null>; targetSdkVersion:34; callerTargetSdkVersion:34; startForegroundCount:0; bindFromPackage:null: isBindService:false]
+10-24 23:31:27.581  1094  1142 I Launcher.IconCache: Database bulk icon loading failed, using fallback bulk icon loading for: ComponentInfo{ua.nebo.watch/ua.nebo.watch.MainActivity}
+10-24 23:31:27.773   520   539 I PreBootBroadcaster: Pre-boot of {com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher} for user 0
+10-24 23:31:28.073   520  1976 D CoreBackPreview: Window{bfef3a2 u0 ua.nebo.watch/ua.nebo.watch.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@76538c1, mPriority=0, mIsAnimationCallback=false}
+10-24 23:31:28.546   520   550 I ActivityManager: Start proc 3387:com.google.android.webview:webview_apk/u0a135 for service {com.google.android.webview/org.chromium.android_webview.nonembedded.AwComponentUpdateService}
+10-24 23:31:29.059   520   539 W ziparchive: Unable to open '/data/app/~~JrtcPOh-dETn5whU2BhuLA==/ua.nebo.watch-qkQ5A-vYkzKCoSIrQU2fBg==/base.dm': No such file or directory
+10-24 23:31:29.075   520   539 I ActivityTaskManager: Displayed ua.nebo.watch/.MainActivity for user 0: +7s898ms
+10-24 23:31:29.298   520  1934 W InputManager-JNI: Input channel object '5081674 Splash Screen ua.nebo.watch (client)' was disposed without first being removed with the input manager!
+10-24 23:31:30.278   520   549 D SystemServerTimingAsync: ssm.onUnlockedUser-0_com.android.server.net.watchlist.NetworkWatchlistService$Lifecycle
+10-24 23:31:30.278   520   549 V SystemServerTimingAsync: ssm.onUnlockedUser-0_com.android.server.net.watchlist.NetworkWatchlistService$Lifecycle took to complete: 0ms
+10-24 23:31:30.469  3387  3464 W cr_AWNetworkFetcherTask: 	at org.chromium.android_webview.nonembedded.NetworkFetcherTask.download(chromium-TrichromeWebViewGoogle6432.apk-stable-567263637:48)
+10-24 23:31:31.535  2714  2714 W ua.nebo.watch: Long monitor contention with owner Thread-5 (3317) at ua.nebo.watch.MapData ua.nebo.watch.MapData$Companion.get(android.content.Context)(MapData.kt:71) waiters=0 in ua.nebo.watch.MapData ua.nebo.watch.MapData$Companion.get(android.content.Context) for 2.309s
+10-24 23:31:31.706   520   573 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{87d2e25 com.google.android.googlequicksearchbox/10132} BLOCKED
+10-24 23:31:31.706   520   573 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{6fa1bfa com.google.android.gm/10143} BLOCKED
+10-24 23:31:31.707   520   573 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{e1bdf9a com.google.android.dialer/10128} BLOCKED
+10-24 23:31:31.707   520   573 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{a6045ab com.google.android.contacts/10154} BLOCKED
+10-24 23:31:31.707   520   573 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{d79f408 com.google.android.apps.youtube.music/10156} BLOCKED
+10-24 23:31:31.844   520  1976 I ImeTracker: ua.nebo.watch:6815a727: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+10-24 23:31:31.844   520  1976 I ImeTracker: ua.nebo.watch:6815a727: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-24 23:31:31.872  1551  1551 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=ua.nebo.watch fieldId=0 fieldName=null extras=null}, false)
+10-24 23:31:32.287  1790  3584 W earchbox:search: Verification of void org.chromium.net.NetworkChangeNotifier.i(int, long) took 138.451ms (368.36 bytecodes/s) (2520B approximate peak alloc)
+10-24 23:31:32.336  2714  2737 I ua.nebo.watch: Background concurrent copying GC freed 190374(7559KB) AllocSpace objects, 23(3084KB) LOS objects, 49% free, 5265KB/10MB, paused 65us,162us total 354.789ms
+10-24 23:31:33.584   157   968 I keystore2: system/security/keystore2/src/watchdog.rs:319 - Watchdog thread idle -> terminating. Have a great day.
+10-24 23:31:33.745  2979  2979 W id.gms.unstable: Long monitor contention with owner ChromiumNet (3659) at boolean android.os.MessageQueue.enqueueMessage(android.os.Message, long)(MessageQueue.java:600) waiters=0 in android.os.Message android.os.MessageQueue.next() for 123ms
+10-24 23:31:35.669  1690  1690 I AiAiEcho: AppFetcherImplV2 updateApps package:[ua.nebo.watch], userId:[0], reason:[package is added.].
+10-24 23:31:36.004   520  3782 D SystemServerTimingAsync: ssm.onCompletedEventUser-0_{|Unlocked|}_com.android.server.net.watchlist.NetworkWatchlistService$Lifecycle
+10-24 23:31:36.004   520  3782 V SystemServerTimingAsync: ssm.onCompletedEventUser-0_{|Unlocked|}_com.android.server.net.watchlist.NetworkWatchlistService$Lifecycle took to complete: 0ms
+10-24 23:31:36.994  1404  3546 I NearbyDiscovery: FastPair: backfillHasWatchPaired, set to false [CONTEXT service_id=265 ]
+10-24 23:31:37.871   520  2340 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{d762f49 com.google.android.gm/10143} BLOCKED
+10-24 23:31:38.635   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:114 - ### Keystore Watchdog report - BEGIN ###
+10-24 23:31:38.635   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:123 - When extracting from a bug report, please include this header
+10-24 23:31:38.635   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:124 - and all 1 records below.
+10-24 23:31:38.635   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:164 - ThreadId(1) Calling get_rkpd_attestation_key() Pending: 500.169982ms Overdue 170.212µs
+10-24 23:31:38.635   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:175 - ### Keystore Watchdog report - END ###
+10-24 23:31:38.773   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:114 - ### Keystore Watchdog report - BEGIN ###
+10-24 23:31:38.773   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:123 - When extracting from a bug report, please include this header
+10-24 23:31:38.773   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:124 - and all 2 records below.
+10-24 23:31:38.773   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:164 - ThreadId(1) Calling get_rkpd_attestation_key() Pending: 637.736553ms Overdue 137.736802ms
+10-24 23:31:38.773   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:164 - ThreadId(5) Calling get_rkpd_attestation_key() Pending: 500.195589ms Overdue 195.84µs
+10-24 23:31:38.773   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:175 - ### Keystore Watchdog report - END ###
+10-24 23:31:39.102   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:114 - ### Keystore Watchdog report - BEGIN ###
+10-24 23:31:39.102   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:123 - When extracting from a bug report, please include this header
+10-24 23:31:39.102   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:124 - and all 1 records below.
+10-24 23:31:39.102   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:164 - ThreadId(1) Calling get_rkpd_attestation_key() Pending: 966.854885ms Overdue 466.855095ms
+10-24 23:31:39.102   157  3971 W keystore2: system/security/keystore2/src/watchdog.rs:175 - ### Keystore Watchdog report - END ###
+10-24 23:31:39.790   520   593 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{e6ab15c com.google.android.settings.intelligence/10118} BLOCKED
+10-24 23:31:39.791   520  2340 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{e9fbc65 com.google.android.settings.intelligence/10118} BLOCKED
+10-24 23:31:40.107  1461  3821 I BlockstoreStorage: Clearing Blockstore Data for package ua.nebo.watch [CONTEXT service_id=258 ]
+10-24 23:31:40.237  1404  3497 I FontLog : Package ua.nebo.watch has no metadata [CONTEXT service_id=132 ]
+10-24 23:31:40.516     0     0 I logd    : start watching /data/system/packages.list ...
+10-24 23:31:42.764   520   573 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{5f4565 com.google.android.googlequicksearchbox/10132} BLOCKED
+10-24 23:31:42.764   520   573 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{d3823a com.android.camera2/10145} BLOCKED
+10-24 23:31:42.764   520   573 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{e984eeb com.google.android.gm/10143} BLOCKED
+10-24 23:31:42.764   520   573 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{3a76448 com.google.android.devicelockcontroller/10172} BLOCKED
+10-24 23:31:42.764   520   573 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{683d2e1 com.google.android.rkpdapp/10171} BLOCKED
+10-24 23:31:42.764   520   573 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{b678806 com.google.android.settings.intelligence/10118} BLOCKED
+10-24 23:31:42.764   520   573 I AppsFilter: interaction: PackageSetting{b199be8 ua.nebo.watch/10192} -> PackageSetting{d5aed90 com.google.android.projection.gearhead/10123} BLOCKED
+10-24 23:31:44.914     0     0 I logd    : start watching /data/system/packages.list ...
+10-24 23:31:47.335  2714  2714 W ua.nebo.watch: Accessing hidden method Landroid/view/MotionEvent;->getEventTimeNano()J (unsupported, reflection, allowed)
