@@ -67,6 +67,17 @@ class MainActivity : Activity(), Watch.Listener {
             val parsed = runCatching { Alerts.parseDetailed(this, sampleText) }
             java.io.File(dir, "parse.txt").writeText(parsed.fold({ "OK " + describe(it) }, { "FAIL " + it }))
             parsed.getOrNull()?.let { base ->
+                val sb = StringBuilder()
+                for (h in listOf("Вишгородський район", "Харківська область", "Київська область", "Львівська область")) {
+                    Watch.prefs.home = h
+                    val stt = NeboService.statusFor(this, base)
+                    sb.append("== ").append(h).append('\n').append(stt.cardText).append("\nпогода: ").append(stt.city)
+                        .append(" код=").append(stt.weatherCode).append(" t=").append(stt.temp).append(" ").append(stt.low).append("..").append(stt.high).append("\n\n")
+                }
+                Watch.prefs.home = "м. Київ"
+                java.io.File(dir, "status.txt").writeText(sb.toString())
+            }
+            parsed.getOrNull()?.let { base ->
                 val map = MapData.get(this)
                 // кілька районів «щойно відбій» для перевірки кольору
                 val withRecent = base.copy(raions = base.raions + listOfNotNull(map.findRaion("Полтавський район")?.index, map.findRaion("Одеський район")?.index).associateWith { AlertState.RECENT })
@@ -207,7 +218,9 @@ class MainActivity : Activity(), Watch.Listener {
                     .put("forward", p.forwardNotifications)
                     .put("yellowNotify", p.yellowNotify)
                     .put("showRecent", p.showRecent)
-                    .put("pushInterval", p.pushIntervalSec))
+                    .put("pushInterval", p.pushIntervalSec)
+                    .put("statusCard", p.statusCard)
+                    .put("statusWeather", p.statusWeather))
                 .put("perm", permJson())
                 .put("regions", regions)
                 .put("version", BuildConfig.VERSION_NAME)
@@ -241,11 +254,17 @@ class MainActivity : Activity(), Watch.Listener {
                 "alertNotify" -> p.alertNotify = value == "true"
                 "yellowNotify" -> p.yellowNotify = value == "true"
                 "showRecent" -> { p.showRecent = value == "true"; repush = true }
-                "pushInterval" -> p.pushIntervalSec = (value.toIntOrNull() ?: 30).coerceIn(30, 600)
+                "pushInterval" -> p.pushIntervalSec = (value.toIntOrNull() ?: 900).coerceIn(30, 3600)
+                "statusCard" -> { p.statusCard = value == "true"; Watch.resetStatusCache() }
+                "statusWeather" -> { p.statusWeather = value == "true"; Watch.resetStatusCache() }
                 "forward" -> {
                     p.forwardNotifications = value == "true"
                     runOnUiThread { Watch.onForwardChanged() }
                 }
+            }
+            if (key == "home" || key == "statusCard" || key == "statusWeather") {
+                Watch.resetStatusCache()
+                if (NeboService.current.fetchedAt > 0) Watch.sendStatus(NeboService.statusFor(this@MainActivity, NeboService.current))
             }
             if (repush && p.autoPush && p.deviceAddress != null && NeboService.current.fetchedAt > 0) {
                 runOnUiThread { Watch.pushFace(NeboService.current, "settings") }

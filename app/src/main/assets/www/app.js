@@ -72,6 +72,7 @@
     $('pushText').textContent = (w.stage || 'Готую…') + (w.progress ? ' ' + w.progress + '%' : '');
     $('lastPush').textContent = w.lastPush ? 'Оновлено на годиннику ' + ago(w.lastPush) : '';
     $('diagLine').textContent = w.diag ? 'Циферблат: ' + w.diag : '';
+    $('capsLine').textContent = w.caps ? 'Ваш годинник підтримує: ' + w.caps : (w.address ? 'Що підтримує годинник, стане видно після першого підключення.' : '');
   }
 
   function renderAlerts() {
@@ -109,6 +110,8 @@
     setSeg('intervalSeg', p.pushInterval);
     $('yellowNotify').checked = p.yellowNotify;
     $('showRecent').checked = p.showRecent;
+    $('statusCard').checked = p.statusCard;
+    $('statusWeather').checked = p.statusWeather;
     $('intervalSeg').style.opacity = p.autoPush && p.pushPolicy === 'all' ? 1 : 0.4;
     $('timeSw').querySelectorAll('button').forEach((b) => b.classList.toggle('on', b.dataset.v === String(p.timeStyle)));
     $('alertNotify').checked = p.alertNotify;
@@ -224,6 +227,8 @@
   $('timeSw').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; A.setPref('timeStyle', b.dataset.v); S.prefs.timeStyle = +b.dataset.v; renderPrefs(); };
   $('alertNotify').onchange = (e) => { A.setPref('alertNotify', String(e.target.checked)); S.prefs.alertNotify = e.target.checked; };
   $('logBtn').onclick = logSheet;
+  $('statusCard').onchange = (e) => { A.setPref('statusCard', String(e.target.checked)); S.prefs.statusCard = e.target.checked; };
+  $('statusWeather').onchange = (e) => { A.setPref('statusWeather', String(e.target.checked)); S.prefs.statusWeather = e.target.checked; };
   $('intervalSeg').onclick = (e) => { const v = e.target.dataset && e.target.dataset.v; if (!v) return; A.setPref('pushInterval', v); S.prefs.pushInterval = +v; renderPrefs(); };
   $('yellowNotify').onchange = (e) => { A.setPref('yellowNotify', String(e.target.checked)); S.prefs.yellowNotify = e.target.checked; };
   $('showRecent').onchange = (e) => { A.setPref('showRecent', String(e.target.checked)); S.prefs.showRecent = e.target.checked; refreshPreview(); };

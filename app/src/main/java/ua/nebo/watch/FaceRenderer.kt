@@ -167,7 +167,7 @@ class FaceRenderer(private val context: Context) {
             AlertState.RED -> Color.parseColor("#E5383B")
             AlertState.PARTIAL -> Color.parseColor("#A9282C")
             AlertState.YELLOW -> Color.parseColor("#F2B51E")
-            AlertState.RECENT -> Color.parseColor("#4A2A30")
+            AlertState.RECENT -> Color.parseColor("#5C3039")
             else -> Color.parseColor("#252833")
         }
 

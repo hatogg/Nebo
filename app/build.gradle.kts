@@ -11,8 +11,8 @@ android {
         applicationId = "ua.nebo.watch"
         minSdk = 24
         targetSdk = 34
-        versionCode = (System.getenv("VERSION_CODE") ?: "2").toInt()
-        versionName = System.getenv("VERSION_NAME") ?: "1.1"
+        versionCode = (System.getenv("VERSION_CODE") ?: "3").toInt()
+        versionName = System.getenv("VERSION_NAME") ?: "1.2"
     }
 
     signingConfigs {

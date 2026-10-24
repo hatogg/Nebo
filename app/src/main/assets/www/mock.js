@@ -14,7 +14,7 @@
     if (LV[k]) lv[i] = LV[k];
     if (r.oblast === 'Луганська область' || r.oblast === 'Автономна Республіка Крим') lv[i] = 4;
   });
-  const prefs = { home: 'Вишгородський район', faceStyle: 'map', timeStyle: 0, pushPolicy: 'all', autoPush: true, alertNotify: true, forward: false, yellowNotify: true, showRecent: true, pushInterval: 30 };
+  const prefs = { home: 'Вишгородський район', faceStyle: 'map', timeStyle: 0, pushPolicy: 'all', autoPush: true, alertNotify: true, forward: false, yellowNotify: true, showRecent: true, pushInterval: 900, statusCard: true, statusWeather: true };
   const shortOf = (n) => { const r = MAP.regions.find((x) => x.name === n); if (r) return r.short; return n.replace(' район', ' р-н'); };
   const homeLevel = () => {
     const i = MAP.raions.findIndex((r) => r.name === prefs.home); if (i >= 0) return lv[i] || 0;
@@ -24,7 +24,7 @@
     const top = {}; MAP.raions.forEach((r, i) => { top[r.oblast] = Math.max(top[r.oblast] || 0, lv[i] || 0); });
     let red = 0, yellow = 0; Object.values(top).forEach((t) => { if (t >= 3) red++; else if (t === 2) yellow++; }); return [red, yellow];
   };
-  const watch = { state: 'CONNECTED', address: 'AA:AC:BC:DF:15:6D', name: 'K61Pro', bound: true, authFailed: false, pushing: false, progress: 0, stage: '', lastPush: Date.now() - 6 * 60000, error: null, diag: 'формат GUI · lcd 31 · tool 1.6 · чип IC_8773 · слот 3/4 · стиль 1/5 · 182 КБ' };
+  const watch = { state: 'CONNECTED', address: 'AA:AC:BC:DF:15:6D', name: 'K61Pro', bound: true, authFailed: false, pushing: false, progress: 0, stage: '', lastPush: Date.now() - 6 * 60000, error: null, diag: 'формат GUI · lcd 31 · tool 1.6 · чип IC_8773 · слот 3/4 · стиль 1/5 · 182 КБ', caps: 'картки так · погода так · компоненти так' };
   const emit = (t, d) => setTimeout(() => window.Nebo && Nebo.onEvent(t, d), 0);
   const alertsJson = () => { const [red, yellow] = counts(); return { fetchedAt: Date.now() - 8000, source: 'alerts.in.ua', red, yellow, home: prefs.home, homeShort: shortOf(prefs.home), homeLevel: homeLevel(), homePartial: false, homeSince: Date.now() - 23 * 60000, sig: JSON.stringify(lv) + prefs.home, error: null }; };
   const COL = { 4: '#E5383B', 3: '#A9282C', 2: '#F2B51E', 1: '#4A2A30', 0: '#252833' };

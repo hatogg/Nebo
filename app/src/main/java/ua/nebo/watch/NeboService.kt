@@ -155,6 +155,7 @@ class NeboService : Service() {
 
         updateNotification()
         broadcast()
+        if (prefs.deviceAddress != null) Watch.sendStatus(statusFor(this, now))
 
         if (!prefs.autoPush || prefs.deviceAddress == null) return
         if (signatureOf(now) == prefs.lastPushSignature) return
@@ -294,6 +295,51 @@ class NeboService : Service() {
         }
 
         private fun hhmm(t: Long) = SimpleDateFormat("HH:mm", Locale.US).format(Date(t))
+
+        /** Текст для картки «Небо» і екрана погоди на годиннику. */
+        fun statusFor(context: Context, st: AlertState): Watch.Status {
+            val prefs = Watch.prefs
+            val map = MapData.get(context)
+            val home = map.home(prefs.home)
+            val short = home?.short ?: prefs.home
+            val level = st.homeLevel(map, home)
+            val since = st.homeSince(map, home)
+            val (red, yellow) = st.counts(map)
+            val word = when {
+                level >= AlertState.PARTIAL -> "ТРИВОГА"
+                level == AlertState.YELLOW -> "ЖОВТИЙ РІВЕНЬ"
+                level == AlertState.RECENT -> "ВІДБІЙ"
+                else -> "ТИХО"
+            }
+            val line1 = buildString {
+                append(short).append(": ").append(word)
+                if (level >= AlertState.YELLOW && since > 0) append(" з ").append(FaceRenderer.sinceText(since))
+                if (level == AlertState.YELLOW) append(" (дрони)")
+                if (level >= AlertState.PARTIAL && (level == AlertState.PARTIAL || st.homePartial(map, home))) append(" (частина)")
+            }
+            val line2 = when {
+                red == 0 && yellow == 0 -> "По Україні тривог немає"
+                yellow == 0 -> "Тривога в $red обл."
+                red == 0 -> "Жовтий рівень в $yellow обл."
+                else -> "Тривога в $red обл., жовтий ще в $yellow"
+            }
+            val text = line1 + "\n" + line2 + "\nОновлено " + hhmm(System.currentTimeMillis())
+            val cityWord = when {
+                level >= AlertState.PARTIAL -> "Тривога"
+                level == AlertState.YELLOW -> "Жовтий"
+                level == AlertState.RECENT -> "Відбій"
+                else -> "Тихо"
+            }
+            val hour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY)
+            val night = hour >= 21 || hour < 6
+            val code = when {
+                level >= AlertState.PARTIAL -> 0x05      // гроза
+                level == AlertState.YELLOW -> 0x03       // хмарно
+                level == AlertState.RECENT -> if (night) 0x0e else 0x02
+                else -> if (night) 0x0f else 0x01        // ясно
+            }
+            return Watch.Status("Небо", text, "$cityWord: $short", code, red, red, red + yellow)
+        }
 
         fun createChannels(context: Context) {
             if (Build.VERSION.SDK_INT < 26) return

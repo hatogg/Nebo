@@ -47,8 +47,23 @@ class Prefs(context: Context) {
 
     /** Як часто можна перезаписувати циферблат при змінах в інших районах, секунд. */
     var pushIntervalSec: Int
-        get() = sp.getInt("pushInterval", 30)
-        set(v) = sp.edit().putInt("pushInterval", v).apply()
+        get() = sp.getInt("pushInterval2", 900)
+        set(v) = sp.edit().putInt("pushInterval2", v).apply()
+
+    /** Миттєвий статус у власній картці годинника (без перезапису циферблата). */
+    var statusCard: Boolean
+        get() = sp.getBoolean("statusCard", true)
+        set(v) = sp.edit().putBoolean("statusCard", v).apply()
+
+    /** Миттєвий статус на екрані погоди годинника. */
+    var statusWeather: Boolean
+        get() = sp.getBoolean("statusWeather", true)
+        set(v) = sp.edit().putBoolean("statusWeather", v).apply()
+
+    /** Ідентифікатор нашої картки на годиннику (-1 — ще не створена). */
+    var cardId: Int
+        get() = sp.getInt("cardId", -1)
+        set(v) = sp.edit().putInt("cardId", v).apply()
 
     var forwardNotifications: Boolean
         get() = sp.getBoolean("forward", false)

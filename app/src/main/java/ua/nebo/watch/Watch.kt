@@ -96,6 +96,9 @@ object Watch {
         if (s == ConnectorState.CONNECTED) {
             authFailed = false
             if (!prefs.bound) prefs.bound = true
+            lastCard = null
+            lastWeather = null
+            cardContentLimit = -1
             applyNotificationConfig()
             val pc = prefs.pendingComponent
             if (pc >= 0 && prefs.guiFormat && !pushing) worker.execute {
@@ -122,6 +125,7 @@ object Watch {
         .put("lastPush", prefs.lastPushTime)
         .put("error", lastError ?: JSONObject.NULL)
         .put("diag", diag ?: JSONObject.NULL)
+        .put("caps", caps ?: JSONObject.NULL)
 
     // ---------- пошук і прив'язка ----------
 
@@ -216,6 +220,106 @@ object Watch {
         val info = runCatching { connector.configFeature().getDeviceInfo() }.getOrNull()
         val t = if (info != null && type != FcNotificationType.OTHERS_APP && !info.isSupportNotification(type)) FcNotificationType.OTHERS_APP else type
         connector.messageFeature().sendNotification(t, null, content).onErrorComplete().subscribe()
+    }
+
+    // ---------- миттєвий статус (без перезапису циферблата) ----------
+
+    /** Що показати на годиннику миттєво: картка з текстом і «погода»-індикатор. */
+    class Status(
+        val cardTitle: String,
+        val cardText: String,
+        val city: String,
+        val weatherCode: Int,
+        val temp: Int,
+        val low: Int,
+        val high: Int,
+    )
+
+    private val statusWorker = Executors.newSingleThreadExecutor { r -> Thread(r, "nebo-status") }
+    @Volatile private var lastCard: String? = null
+    @Volatile private var lastWeather: String? = null
+    @Volatile private var lastWeatherAt = 0L
+    @Volatile private var cardContentLimit = -1
+    @Volatile var caps: String? = null
+        private set
+
+    /** Надсилає статус на годинник, лише якщо він змінився (погоду — ще й раз на 10 хв, щоб не застарівала). */
+    fun sendStatus(s: Status) {
+        if (state != ConnectorState.CONNECTED || pushing) return
+        statusWorker.execute { runCatching { doSendStatus(s) }.onFailure { Timber.w(it, "status failed") } }
+    }
+
+    private fun doSendStatus(s: Status) {
+        if (state != ConnectorState.CONNECTED || pushing) return
+        val info = connector.configFeature().getDeviceInfo()
+        val card = info.isSupportFeature(FcDeviceInfo.Feature.CUSTOM_CARD)
+        val weather = info.isSupportFeature(FcDeviceInfo.Feature.WEATHER)
+        val comp = info.isSupportFeature(FcDeviceInfo.Feature.DIAL_COMPONENT)
+        val newCaps = "картки ${if (card) "так" else "ні"} · погода ${if (weather) "так" else "ні"} · компоненти ${if (comp) "так" else "ні"}"
+        if (newCaps != caps) { caps = newCaps; emit("state", statusJson()) }
+        val f = connector.settingsFeature()
+
+        if (card && prefs.statusCard) {
+            val key = s.cardTitle + "\n" + s.cardText
+            if (key != lastCard) {
+                if (cardContentLimit < 0 || prefs.cardId < 0) {
+                    val lim = f.requestCustomCards().timeout(10, TimeUnit.SECONDS).blockingGet()
+                    cardContentLimit = lim.contentLimit
+                    val mine = lim.cards.firstOrNull { it.id == prefs.cardId } ?: lim.cards.firstOrNull { it.title == s.cardTitle }
+                    prefs.cardId = mine?.id ?: run {
+                        if (lim.countLimit > 0 && lim.cards.size >= lim.countLimit) -1 else {
+                            var id = 0
+                            for (c in lim.cards.sortedBy { it.id }) { if (c.id > id) break else id++ }
+                            id
+                        }
+                    }
+                }
+                if (prefs.cardId >= 0) {
+                    val text = utf8Trim(s.cardText, if (cardContentLimit > 0) cardContentLimit else 200)
+                    f.setCustomCards(com.topstep.fitcloud.sdk.v2.model.settings.FcCustomCard(prefs.cardId, s.cardTitle, text))
+                        .timeout(10, TimeUnit.SECONDS).blockingAwait()
+                    lastCard = key
+                    Timber.d("card updated")
+                } else {
+                    Timber.w("no free custom card slot")
+                }
+            }
+        }
+
+        if (weather && prefs.statusWeather) {
+            val key = "${s.city}|${s.weatherCode}|${s.temp}|${s.low}|${s.high}"
+            val now = System.currentTimeMillis()
+            if (key != lastWeather || now - lastWeatherAt > 10 * 60_000L) {
+                val today = com.topstep.fitcloud.sdk.v2.model.settings.FcWeatherToday(
+                    lowTemperature = s.low,
+                    highTemperature = s.high,
+                    weatherCode = s.weatherCode,
+                    currentTemperature = s.temp,
+                    pressure = 1000,
+                    windForce = 0,
+                    visibility = 10,
+                )
+                val forecast = List(3) { com.topstep.fitcloud.sdk.v2.model.settings.FcWeatherForecast(lowTemperature = s.low, highTemperature = s.high, weatherCode = s.weatherCode) }
+                f.setWeather(utf8Trim(s.city, 32), now, today, forecast).timeout(10, TimeUnit.SECONDS).blockingAwait()
+                lastWeather = key
+                lastWeatherAt = now
+                Timber.d("weather status updated")
+            }
+        }
+    }
+
+    /** Після зміни налаштувань — надіслати статус заново. */
+    fun resetStatusCache() {
+        lastCard = null
+        lastWeather = null
+    }
+
+    /** Обрізає рядок так, щоб у UTF-8 він займав не більше [maxBytes] байтів. */
+    private fun utf8Trim(text: String, maxBytes: Int): String {
+        if (text.toByteArray(Charsets.UTF_8).size <= maxBytes) return text
+        var end = text.length
+        while (end > 0 && (text.substring(0, end) + "…").toByteArray(Charsets.UTF_8).size > maxBytes) end--
+        return text.substring(0, end).trimEnd() + "…"
     }
 
     // ---------- циферблат ----------

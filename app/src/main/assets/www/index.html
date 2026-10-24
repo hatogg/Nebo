@@ -81,13 +81,22 @@
       <button data-v="all">Будь-яка зміна на карті</button>
       <button data-v="home">Лише мій район</button>
     </div>
-    <div class="label">Як часто оновлювати циферблат</div>
+    <div class="label">Як часто оновлювати карту на циферблаті</div>
     <div class="seg small" id="intervalSeg">
-      <button data-v="30">30 секунд</button>
-      <button data-v="60">1 хвилина</button>
-      <button data-v="180">3 хвилини</button>
+      <button data-v="30">30 с</button>
+      <button data-v="60">1 хв</button>
+      <button data-v="180">3 хв</button>
+      <button data-v="900">15 хв</button>
     </div>
-    <p class="muted small">Тривоги перевіряються кожні 15 с. Циферблат перезаписується лише коли щось змінилось: надсилання займає 20–60 с, тож часте оновлення швидше розряджає годинник. Зміна у вашому районі надсилається одразу.</p>
+    <p class="muted small">Зміна у вашому районі перемальовує циферблат одразу, зміни в інших районах — не частіше за обраний інтервал. Кожне надсилання займає 20–60 с, тож рідше — це довше працює годинник.</p>
+  </section>
+
+  <section class="card">
+    <h2>Миттєво на годиннику</h2>
+    <p class="muted small" style="margin-top:-6px">Статус вашого району оновлюється за секунду, без перезапису циферблата — щоразу, коли щось змінюється (перевірка кожні 15 с).</p>
+    <label class="row sw"><span class="grow">Картка «Небо»<small>Окремий екран на годиннику: статус, час початку, кількість областей</small></span><input type="checkbox" id="statusCard"><i></i></label>
+    <label class="row sw"><span class="grow">Статус на екрані погоди<small>Замість міста — статус; гроза — тривога, хмарно — жовтий рівень, ясно — тихо; температура — кількість областей у тривозі</small></span><input type="checkbox" id="statusWeather"><i></i></label>
+    <p id="capsLine" class="muted small"></p>
     <p id="srcLine" class="muted small"></p>
   </section>
 

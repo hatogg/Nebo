@@ -47,11 +47,16 @@ data class AlertState(
     fun homeSince(map: MapData, home: MapData.Home?): Long {
         val keys = when (home) {
             is MapData.Home.OfRaion -> listOf("r${home.raion.index}")
-            is MapData.Home.OfRegion -> if (home.region.isCity) listOf("c${home.region.name}")
-                else map.raionsByOblast[home.region.name].orEmpty().filter { raionLevel(it.index) >= YELLOW }.map { "r${it.index}" }
+            is MapData.Home.OfRegion -> if (home.region.isCity) listOf("c${home.region.name}") else {
+                val list = map.raionsByOblast[home.region.name].orEmpty()
+                val top = list.maxOfOrNull { raionLevel(it.index) } ?: CALM
+                if (top < YELLOW) emptyList() else list.filter { raionLevel(it.index) == top }.map { "r${it.index}" }
+            }
             null -> emptyList()
         }
-        return keys.mapNotNull { since[it] }.filter { it > 0 }.minOrNull() ?: 0L
+        val times = keys.mapNotNull { since[it] }.filter { it > 0 }
+        // для області — найсвіжіша хвиля тривоги, для району — її початок
+        return (if (home is MapData.Home.OfRegion && !home.region.isCity) times.maxOrNull() else times.minOrNull()) ?: 0L
     }
 
     /** Кількість областей з тривогою (хоч у частині) і з лише жовтим рівнем. */
@@ -145,13 +150,24 @@ object Alerts {
         val raions = HashMap<Int, Int>()
         val cities = HashMap<String, Int>()
         val since = HashMap<String, Long>()
+        // Час початку беремо від тривоги найвищого рівня (громада з давньою тривогою не перебиває свіжу районну)
         fun setRaion(i: Int, level: Int, start: Long) {
-            if (level > (raions[i] ?: 0)) raions[i] = level
-            if (start > 0) since["r$i"] = minOf(since["r$i"] ?: Long.MAX_VALUE, start)
+            val cur = raions[i] ?: 0
+            if (level > cur) {
+                raions[i] = level
+                if (start > 0) since["r$i"] = start else since.remove("r$i")
+            } else if (level == cur && start > 0) {
+                since["r$i"] = minOf(since["r$i"] ?: Long.MAX_VALUE, start)
+            }
         }
         fun setCity(name: String, level: Int, start: Long) {
-            if (level > (cities[name] ?: 0)) cities[name] = level
-            if (start > 0) since["c$name"] = minOf(since["c$name"] ?: Long.MAX_VALUE, start)
+            val cur = cities[name] ?: 0
+            if (level > cur) {
+                cities[name] = level
+                if (start > 0) since["c$name"] = start else since.remove("c$name")
+            } else if (level == cur && start > 0) {
+                since["c$name"] = minOf(since["c$name"] ?: Long.MAX_VALUE, start)
+            }
         }
         for (i in 0 until list.length()) {
             val o = list.optJSONObject(i) ?: continue
