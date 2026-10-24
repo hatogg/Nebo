@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+Server: nginx/1.14.2
+Date: Sat, 24 Oct 2026 23:02:05 GMT
+Content-Type: application/json
+Content-Length: 3997
+Connection: keep-alive
+X-Powered-By: PHP/5.6.38
+Cache-Control: max-age=60, private, must-revalidate
+Pragma: no-cache
+Expires: Sat, 24 Oct 2026 23:02:06 GMT
+Vary: Accept-Encoding
+
