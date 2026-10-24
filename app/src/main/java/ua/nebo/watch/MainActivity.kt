@@ -56,42 +56,45 @@ class MainActivity : Activity(), Watch.Listener {
             val dir = java.io.File(getExternalFilesDir(null), "faces").apply { mkdirs() }
             val r = FaceRenderer(this)
             val now = System.currentTimeMillis()
-            val east = setOf("Харківська область", "Сумська область", "Донецька область", "Луганська область",
-                "Запорізька область", "Дніпропетровська область", "Херсонська область", "Автономна Республіка Крим")
-            val cases = listOf(
-                Triple("kyiv_alert", east + setOf("Київська область", "м. Київ"), "м. Київ"),
-                Triple("lviv_calm", east, "Львівська область"),
-                Triple("all_clear", emptySet(), "Одеська область"),
-            )
-            for ((name, active, home) in cases) {
-                val st = AlertState(active, active.associateWith { now - 23 * 60_000L }, now)
-                for (style in listOf(Prefs.STYLE_MAP, Prefs.STYLE_HOME)) {
-                    val bmp = r.render(410, 502, st, home, style)
+            fun describe(st: AlertState): String {
+                val map = MapData.get(this)
+                val (red, yellow) = st.counts(map)
+                return "red=$red yellow=$yellow raions=" + st.raions.entries.sortedBy { it.key }
+                    .joinToString(", ") { map.raions[it.key].name + ":" + it.value } + " cities=" + st.cities
+            }
+            // Справжня відповідь alerts.in.ua (знімок), розбір не залежить від мережі
+            val sampleText = assets.open("sample_aiu.json").bufferedReader().use { it.readText() }
+            val parsed = runCatching { Alerts.parseDetailed(this, sampleText) }
+            java.io.File(dir, "parse.txt").writeText(parsed.fold({ "OK " + describe(it) }, { "FAIL " + it }))
+            parsed.getOrNull()?.let { base ->
+                val map = MapData.get(this)
+                // кілька районів «щойно відбій» для перевірки кольору
+                val withRecent = base.copy(raions = base.raions + listOfNotNull(map.findRaion("Полтавський район")?.index, map.findRaion("Одеський район")?.index).associateWith { AlertState.RECENT })
+                val cases = listOf(
+                    "kyiv_city" to "м. Київ",
+                    "vyshhorod_yellow" to "Вишгородський район",
+                    "kharkiv_red" to "Харківська область",
+                    "lviv_calm" to "Львівська область",
+                )
+                for ((name, home) in cases) for (style in listOf(Prefs.STYLE_MAP, Prefs.STYLE_HOME)) {
+                    val bmp = r.render(410, 502, withRecent, home, style)
                     java.io.File(dir, "${name}_$style.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
                 }
             }
-            // Розбір відповіді на зразку (не залежить від мережі)
-            val sample = """{"version":"1","states":{"Київська область":{"alertnow":true,"changed":"2026-10-24 21:05:00"},""" +
-                """"м. Київ":{"alertnow":true,"changed":"2026-10-24 21:06:00"},"Львівська область":{"alertnow":false,"changed":"2026-10-24 10:00:00"},""" +
-                """"Автономна Республіка Крим":{"alertnow":true},"Харківська область":{"alertnow":true,"changed":"2026-10-24 20:00:00"}}}"""
-            val parsed = runCatching { Alerts.parse(this, sample) }
-            java.io.File(dir, "parse.txt").writeText(
-                parsed.fold({ "OK active=" + it.active.sorted().joinToString(", ") + " since=" + it.since.mapValues { e -> java.util.Date(e.value) } }, { "FAIL " + it })
-            )
             var live: Result<AlertState> = Result.failure(IllegalStateException("not tried"))
             val log = StringBuilder()
             for (attempt in 1..5) {
                 Thread.sleep(if (attempt == 1) 3_000L else 20_000L)
                 live = runCatching { Alerts.fetch(this) }
-                log.append("attempt ").append(attempt).append(": ").append(live.fold({ "OK" }, { it.toString() })).append('\n')
+                log.append("attempt ").append(attempt).append(": ").append(live.fold({ "OK " + it.source }, { it.toString() })).append('\n')
                 if (live.isSuccess) break
             }
-            java.io.File(dir, "live.txt").writeText(
-                log.toString() + live.fold({ "OK active=" + it.active.sorted().joinToString(", ") + " since=" + it.since.mapValues { e -> java.util.Date(e.value) } }, { "FAIL " + it })
-            )
+            java.io.File(dir, "live.txt").writeText(log.toString() + live.fold({ "OK " + describe(it) }, { "FAIL " + it }))
             live.getOrNull()?.let { st ->
-                val bmp = r.render(410, 502, st, "м. Київ", Prefs.STYLE_MAP)
-                java.io.File(dir, "live_map.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
+                for (style in listOf(Prefs.STYLE_MAP, Prefs.STYLE_HOME)) {
+                    val bmp = r.render(410, 502, st, "Київська область", style)
+                    java.io.File(dir, "live_$style.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
+                }
             }
             java.io.File(dir, "done").writeText("ok")
         }.start()
@@ -184,9 +187,12 @@ class MainActivity : Activity(), Watch.Listener {
         @JavascriptInterface
         fun getState(): String {
             val p = Watch.prefs
+            val map = MapData.get(this@MainActivity)
             val regions = JSONArray()
-            MapData.get(this@MainActivity).regions.sortedBy { it.short }.forEach {
-                regions.put(JSONObject().put("name", it.name).put("short", it.short))
+            map.regions.sortedBy { it.short }.forEach { reg ->
+                val ra = JSONArray()
+                map.raionsByOblast[reg.name].orEmpty().sortedBy { it.name }.forEach { ra.put(JSONObject().put("name", it.name).put("short", it.short)) }
+                regions.put(JSONObject().put("name", reg.name).put("short", reg.short).put("raions", ra))
             }
             return JSONObject()
                 .put("watch", Watch.statusJson())
@@ -198,7 +204,10 @@ class MainActivity : Activity(), Watch.Listener {
                     .put("pushPolicy", p.pushPolicy)
                     .put("autoPush", p.autoPush)
                     .put("alertNotify", p.alertNotify)
-                    .put("forward", p.forwardNotifications))
+                    .put("forward", p.forwardNotifications)
+                    .put("yellowNotify", p.yellowNotify)
+                    .put("showRecent", p.showRecent)
+                    .put("pushInterval", p.pushIntervalSec))
                 .put("perm", permJson())
                 .put("regions", regions)
                 .put("version", BuildConfig.VERSION_NAME)
@@ -208,7 +217,7 @@ class MainActivity : Activity(), Watch.Listener {
         @JavascriptInterface
         fun getPreview(): String {
             val p = Watch.prefs
-            val bmp = FaceRenderer(this@MainActivity).render(410, 502, NeboService.current, p.home, p.faceStyle)
+            val bmp = FaceRenderer(this@MainActivity).render(410, 502, NeboService.current, p.home, p.faceStyle, p.showRecent)
             val out = ByteArrayOutputStream()
             bmp.compress(Bitmap.CompressFormat.PNG, 100, out)
             bmp.recycle()
@@ -222,10 +231,17 @@ class MainActivity : Activity(), Watch.Listener {
             when (key) {
                 "home" -> { p.home = value; repush = true }
                 "faceStyle" -> { p.faceStyle = value; repush = true }
-                "timeStyle" -> { p.timeStyle = value.toIntOrNull() ?: 0; repush = true }
+                "timeStyle" -> {
+                    p.timeStyle = value.toIntOrNull() ?: 0
+                    // На годинниках формату GUI колір міняється миттєво, без нового циферблата
+                    repush = !Watch.applyTimeStyleQuick()
+                }
                 "pushPolicy" -> p.pushPolicy = value
                 "autoPush" -> p.autoPush = value == "true"
                 "alertNotify" -> p.alertNotify = value == "true"
+                "yellowNotify" -> p.yellowNotify = value == "true"
+                "showRecent" -> { p.showRecent = value == "true"; repush = true }
+                "pushInterval" -> p.pushIntervalSec = (value.toIntOrNull() ?: 30).coerceIn(30, 600)
                 "forward" -> {
                     p.forwardNotifications = value == "true"
                     runOnUiThread { Watch.onForwardChanged() }
@@ -284,10 +300,31 @@ class MainActivity : Activity(), Watch.Listener {
         }
 
         @JavascriptInterface
+        fun getLog(): String = LogBuffer.dump()
+
+        @JavascriptInterface
+        fun copyLog() = runOnUiThread {
+            val cm = getSystemService(CLIPBOARD_SERVICE) as android.content.ClipboardManager
+            cm.setPrimaryClip(android.content.ClipData.newPlainText("Небо — журнал", diagHeader() + LogBuffer.dump()))
+        }
+
+        @JavascriptInterface
+        fun shareLog() = runOnUiThread {
+            val i = Intent(Intent.ACTION_SEND).setType("text/plain")
+                .putExtra(Intent.EXTRA_SUBJECT, "Небо — журнал")
+                .putExtra(Intent.EXTRA_TEXT, diagHeader() + LogBuffer.dump())
+            runCatching { startActivity(Intent.createChooser(i, "Надіслати журнал")) }
+        }
+
+        @JavascriptInterface
         fun openUrl(url: String) = runOnUiThread {
             runCatching { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))) }
         }
     }
+
+    private fun diagHeader(): String =
+        "Небо ${BuildConfig.VERSION_NAME}\nГодинник: ${Watch.prefs.deviceName} ${Watch.prefs.deviceAddress} стан ${Watch.state}\n" +
+            "Діагностика: ${Watch.diag ?: "—"}\nПомилка: ${Watch.lastError ?: "—"}\n\n"
 
     companion object {
         private const val REQ_BASE = 1

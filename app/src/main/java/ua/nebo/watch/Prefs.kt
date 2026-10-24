@@ -35,6 +35,21 @@ class Prefs(context: Context) {
         get() = sp.getBoolean("alertNotify", true)
         set(v) = sp.edit().putBoolean("alertNotify", v).apply()
 
+    /** Сповіщати про жовтий рівень (дронова загроза) у моєму районі/області. */
+    var yellowNotify: Boolean
+        get() = sp.getBoolean("yellowNotify", true)
+        set(v) = sp.edit().putBoolean("yellowNotify", v).apply()
+
+    /** Показувати на карті райони, де тривога закінчилась менше 20 хв тому. */
+    var showRecent: Boolean
+        get() = sp.getBoolean("showRecent", true)
+        set(v) = sp.edit().putBoolean("showRecent", v).apply()
+
+    /** Як часто можна перезаписувати циферблат при змінах в інших районах, секунд. */
+    var pushIntervalSec: Int
+        get() = sp.getInt("pushInterval", 30)
+        set(v) = sp.edit().putInt("pushInterval", v).apply()
+
     var forwardNotifications: Boolean
         get() = sp.getBoolean("forward", false)
         set(v) = sp.edit().putBoolean("forward", v).apply()
@@ -74,6 +89,21 @@ class Prefs(context: Context) {
     var pushBinFlag: Int
         get() = sp.getInt("binFlag", -1)
         set(v) = sp.edit().putInt("binFlag", v).apply()
+
+    /** Чи годинник використовує формат GUI (стиль часу перемикається командою). */
+    var guiFormat: Boolean
+        get() = sp.getBoolean("gui", false)
+        set(v) = sp.edit().putBoolean("gui", v).apply()
+
+    /** Позиція нашого циферблата в списку слотів годинника. */
+    var dialPosition: Int
+        get() = sp.getInt("dialPos", 0)
+        set(v) = sp.edit().putInt("dialPos", v).apply()
+
+    /** Стиль часу, який ще треба застосувати після перепідключення (-1 — нічого). */
+    var pendingComponent: Int
+        get() = sp.getInt("pendingComp", -1)
+        set(v) = sp.edit().putInt("pendingComp", v).apply()
 
     /** Коли почалась тривога в регіоні (якщо джерело не дає час), name -> millis. */
     fun alertSince(region: String): Long = sp.getLong("since_$region", 0L)

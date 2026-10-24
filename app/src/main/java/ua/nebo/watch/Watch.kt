@@ -97,6 +97,10 @@ object Watch {
             authFailed = false
             if (!prefs.bound) prefs.bound = true
             applyNotificationConfig()
+            val pc = prefs.pendingComponent
+            if (pc >= 0 && prefs.guiFormat && !pushing) worker.execute {
+                if (applyComponent(prefs.dialPosition, pc)) prefs.pendingComponent = -1
+            }
             pending?.let { st -> pending = null; pushFace(st, "reconnect") }
         } else if (s == ConnectorState.DISCONNECTED) {
             val reason = runCatching { connector.getDisconnectedReason() }.getOrNull()
@@ -117,6 +121,7 @@ object Watch {
         .put("stage", pushStage)
         .put("lastPush", prefs.lastPushTime)
         .put("error", lastError ?: JSONObject.NULL)
+        .put("diag", diag ?: JSONObject.NULL)
 
     // ---------- пошук і прив'язка ----------
 
@@ -215,14 +220,26 @@ object Watch {
 
     // ---------- циферблат ----------
 
-    /** Ставить у чергу генерацію й надсилання циферблата для стану [st]. */
+    private val queued = java.util.concurrent.atomic.AtomicReference<Pair<AlertState, String>?>(null)
+
+    /**
+     * Ставить у чергу генерацію й надсилання циферблата для стану [st].
+     * Якщо в черзі вже щось чекає — просто підміняє стан на найсвіжіший.
+     */
     fun pushFace(st: AlertState, reason: String) {
         if (prefs.deviceAddress == null) return
         if (state != ConnectorState.CONNECTED) {
             pending = st
             return
         }
-        worker.execute { doPush(st, reason) }
+        if (queued.getAndSet(st to reason) == null) {
+            worker.execute {
+                val job = queued.getAndSet(null) ?: return@execute
+                val force = job.second == "manual" || job.second == "settings"
+                if (!force && NeboService.signatureOf(job.first) == prefs.lastPushSignature) return@execute
+                doPush(job.first, job.second)
+            }
+        }
     }
 
     private fun stage(text: String, progress: Int) {
@@ -250,7 +267,7 @@ object Watch {
             val tpl = template(push.lcd, push.toolVersion, gui, info, shape)
 
             stage("Малюю карту…", 15)
-            val face = FaceRenderer(app).render(shape.width, shape.height, st, prefs.home, prefs.faceStyle)
+            val face = FaceRenderer(app).render(shape.width, shape.height, st, prefs.home, prefs.faceStyle, prefs.showRecent)
             val background = DialDrawer.createDialBackground(face, shape, DialDrawer.ScaleType.CENTER_CROP)!!
             val preview = DialDrawer.createDialPreview(
                 face, tpl.style, shape, DialDrawer.ScaleType.CENTER_CROP, DialDrawer.Position.TOP,
@@ -287,22 +304,30 @@ object Watch {
             }
 
             stage("Надсилаю на годинник…", 20)
-            val dfu = c.newDfuManager(true)
-            val progressSub = dfu.observerStateProgress().subscribe({ p ->
-                if (p.state == FcDfuManager.DfuState.DFU_ING && p.progress >= 0) stage("Надсилаю на годинник…", 20 + p.progress * 78 / 100)
-            }, {})
-            try {
-                dfu.start(FcDfuManager.DfuType.DIAL, Uri.fromFile(out), binFlag).blockingAwait()
-            } finally {
-                progressSub.dispose()
-                dfu.release()
-            }
+            diag = "формат ${if (gui) "GUI" else "базовий"} · lcd ${push.lcd} · tool ${push.toolVersion} · " +
+                "чип ${runCatching { info.getIcType().toString() }.getOrDefault("?")} · слот ${position + 1}/${spaces.size.coerceAtLeast(1)} · " +
+                "стиль ${tpl.styleIndex + 1}/${tpl.styleCount} · ${(out.length() + 1023) / 1024} КБ"
+            Timber.i("push: $diag")
+            prefs.guiFormat = gui
+            prefs.dialPosition = position
+            runDfu(c, out, binFlag)
             prefs.pushBinFlag = binFlag.toInt()
-            if (gui) {
-                c.settingsFeature().setDialComponent(position, byteArrayOf(tpl.styleIndex.toByte()))
-                    .timeout(10, TimeUnit.SECONDS).onErrorComplete().blockingAwait()
+
+            // Після запису годинник часто перепідключається — чекаємо зв'язку
+            if (state != ConnectorState.CONNECTED) {
+                stage("Годинник застосовує циферблат…", 99)
+                runCatching { c.reconnect() }
+                waitConnected(40_000L)
             }
-            prefs.lastPushSignature = st.signature + "#" + prefs.home + "#" + prefs.faceStyle + "#" + prefs.timeStyle
+            if (gui) {
+                if (state == ConnectorState.CONNECTED && applyComponent(position, tpl.styleIndex)) {
+                    prefs.pendingComponent = -1
+                } else {
+                    // Застосуємо стиль часу, щойно годинник знову буде на зв'язку
+                    prefs.pendingComponent = tpl.styleIndex
+                }
+            }
+            prefs.lastPushSignature = NeboService.signatureOf(st)
             prefs.lastPushTime = System.currentTimeMillis()
             Timber.i("Dial pushed ($reason) in ${System.currentTimeMillis() - started} ms")
             stage("Готово", 100)
@@ -317,7 +342,80 @@ object Watch {
         }
     }
 
-    private class Template(val bin: File, val style: Bitmap, val styleBaseOnWidth: Int, val styleIndex: Int)
+    /**
+     * Надсилає файл циферблата. Деякі годинники після 100% одразу застосовують циферблат і рвуть зв'язок,
+     * не надіславши підтвердження, — тоді вважаємо запис успішним через 20 с після 100%.
+     */
+    private fun runDfu(c: FcConnector, file: File, binFlag: Byte) {
+        val dfu = c.newDfuManager(true)
+        val completed = java.util.concurrent.atomic.AtomicBoolean(false)
+        val failed = java.util.concurrent.atomic.AtomicReference<Throwable?>(null)
+        val fullAt = java.util.concurrent.atomic.AtomicLong(0L)
+        val progressSub = dfu.observerStateProgress().subscribe({ p ->
+            Timber.d("dfu ${p.state} ${p.progress}")
+            when (p.state) {
+                FcDfuManager.DfuState.DFU_ING -> if (p.progress >= 0) {
+                    stage("Надсилаю на годинник…", 20 + p.progress * 78 / 100)
+                    if (p.progress >= 100) fullAt.compareAndSet(0L, System.currentTimeMillis())
+                }
+                FcDfuManager.DfuState.DFU_SUCCESS -> completed.set(true)
+                else -> {}
+            }
+        }, {})
+        val job = dfu.start(FcDfuManager.DfuType.DIAL, Uri.fromFile(file), binFlag)
+            .subscribe({ completed.set(true) }, { failed.set(it) })
+        val begin = System.currentTimeMillis()
+        try {
+            while (true) {
+                if (completed.get()) return
+                val e = failed.get()
+                if (e != null) {
+                    // Обрив зв'язку вже після повної передачі — циферблат на годиннику є
+                    if (fullAt.get() > 0L) { Timber.w(e, "dfu error after 100%, treat as success"); return }
+                    throw e
+                }
+                val now = System.currentTimeMillis()
+                if (fullAt.get() > 0L && now - fullAt.get() > 20_000L) { Timber.w("dfu: no confirmation after 100%, treat as success"); return }
+                if (now - begin > 6 * 60_000L) throw WatchException("Годинник не прийняв циферблат за 6 хвилин")
+                Thread.sleep(300)
+            }
+        } finally {
+            job.dispose()
+            progressSub.dispose()
+            runCatching { dfu.release() }
+        }
+    }
+
+    private fun waitConnected(timeoutMs: Long): Boolean {
+        val end = System.currentTimeMillis() + timeoutMs
+        while (System.currentTimeMillis() < end) {
+            if (state == ConnectorState.CONNECTED) return true
+            Thread.sleep(500)
+        }
+        return state == ConnectorState.CONNECTED
+    }
+
+    private fun applyComponent(position: Int, styleIndex: Int): Boolean = runCatching {
+        connector.settingsFeature().setDialComponent(position, byteArrayOf(styleIndex.toByte()))
+            .timeout(10, TimeUnit.SECONDS).blockingAwait()
+        true
+    }.getOrElse { Timber.w(it, "setDialComponent failed"); false }
+
+    /** На годинниках формату GUI колір часу міняється командою, без повторного надсилання циферблата. */
+    fun applyTimeStyleQuick(): Boolean {
+        if (!prefs.guiFormat || prefs.pushBinFlag < 0 || state != ConnectorState.CONNECTED || pushing) return false
+        val pos = prefs.dialPosition
+        val style = prefs.timeStyle
+        worker.execute {
+            if (applyComponent(pos, style)) emit("toast", JSONObject().put("message", "Колір годинника змінено"))
+        }
+        return true
+    }
+
+    @Volatile var diag: String? = null
+        private set
+
+    private class Template(val bin: File, val style: Bitmap, val styleBaseOnWidth: Int, val styleIndex: Int, val styleCount: Int)
 
     private val BASE_STYLE_NAMES = listOf("White", "Black", "Yellow", "Green", "Gray")
     private val BASE_STYLE_RES = intArrayOf(
@@ -343,7 +441,7 @@ object Watch {
             val idx = BASE_STYLE_NAMES.indexOfFirst { it.equals(o.optString("styleName"), true) }.let { if (it < 0) 0 else it }
             val bin = download(o.getString("binUrl"), ".bin")
             val style = BitmapFactory.decodeResource(app.resources, BASE_STYLE_RES[idx])
-            return Template(bin, style, DialDrawer.STYLE_BASE_ON_WIDTH, idx)
+            return Template(bin, style, DialDrawer.STYLE_BASE_ON_WIDTH, idx, arr.length())
         } else {
             val platform = when (info.getIcType()) {
                 FcDeviceInfo.IcType.IC_568X -> "gui-5681"
@@ -360,7 +458,7 @@ object Watch {
             val bin = download(o.getString("binUrl"), ".bin")
             val styleFile = download(urls.getString(idx), ".png")
             val style = BitmapFactory.decodeFile(styleFile.absolutePath) ?: throw WatchException("Не вдалося відкрити стиль часу")
-            return Template(bin, style, shape.width * 2, idx)
+            return Template(bin, style, shape.width * 2, idx, urls.length())
         }
     }
 

@@ -32,6 +32,7 @@
       <div id="lastPush" class="muted small"></div>
     </div>
   </section>
+  <div class="legend"><span><i class="l-red"></i>тривога</span><span><i class="l-part"></i>у частині району</span><span><i class="l-yellow"></i>жовтий рівень</span><span><i class="l-recent"></i>щойно відбій</span></div>
 
   <section class="card">
     <h2>Годинник</h2>
@@ -47,6 +48,8 @@
       <div id="authBox" class="warn hidden">Годинник прив'язаний до іншого застосунку (мабуть, FitCloudPro). <button id="rebindBtn" class="link">Прив'язати знову</button></div>
       <div id="errBox" class="warn hidden"></div>
       <div class="btns"><button id="unbindBtn" class="btn ghost">Відв'язати</button><button id="changeBtn" class="btn ghost">Інший годинник</button></div>
+      <p id="diagLine" class="muted small diag"></p>
+      <button id="logBtn" class="link small">Журнал для розробника</button>
     </div>
   </section>
 
@@ -69,13 +72,22 @@
 
   <section class="card">
     <h2>Тривоги</h2>
-    <button id="homeBtn" class="row pick"><span class="grow"><span class="muted small">Моя область</span><b id="homeName">Київ</b></span><svg class="chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <button id="homeBtn" class="row pick"><span class="grow"><span class="muted small">Мій район чи область</span><b id="homeName">Київ</b></span><svg class="chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     <label class="row sw"><span class="grow">Сповіщення про тривогу на годиннику<small>Вібрація й текст при оголошенні та відбої</small></span><input type="checkbox" id="alertNotify"><i></i></label>
+    <label class="row sw"><span class="grow">Сповіщати про жовтий рівень<small>Загроза дронів у моєму районі</small></span><input type="checkbox" id="yellowNotify"><i></i></label>
+    <label class="row sw"><span class="grow">Показувати щойно завершені тривоги<small>Райони, де відбій був менше 20 хв тому</small></span><input type="checkbox" id="showRecent"><i></i></label>
     <label class="row sw"><span class="grow">Оновлювати циферблат сам<small>Коли змінюються тривоги</small></span><input type="checkbox" id="autoPush"><i></i></label>
     <div class="seg small" id="policySeg">
       <button data-v="all">Будь-яка зміна на карті</button>
-      <button data-v="home">Лише моя область</button>
+      <button data-v="home">Лише мій район</button>
     </div>
+    <div class="label">Як часто оновлювати циферблат</div>
+    <div class="seg small" id="intervalSeg">
+      <button data-v="30">30 секунд</button>
+      <button data-v="60">1 хвилина</button>
+      <button data-v="180">3 хвилини</button>
+    </div>
+    <p class="muted small">Тривоги перевіряються кожні 15 с. Циферблат перезаписується лише коли щось змінилось: надсилання займає 20–60 с, тож часте оновлення швидше розряджає годинник. Зміна у вашому районі надсилається одразу.</p>
     <p id="srcLine" class="muted small"></p>
   </section>
 
@@ -89,7 +101,7 @@
 
   <footer>
     <p>Дані про тривоги — відкрите API ubilling.net.ua. Це неофіційне джерело: для важливих рішень користуйтеся офіційним застосунком «Повітряна тривога».</p>
-    <p>Карта © учасники OpenStreetMap. Годинник — через офіційний FitCloudPro SDK.</p>
+    <p>Тривоги по районах з рівнями — дані alerts.in.ua через ubilling. Межі областей © учасники OpenStreetMap, районів і громад — ukrainian_geodata (CC BY 4.0). Годинник — через офіційний FitCloudPro SDK.</p>
     <p id="ver"></p>
   </footer>
 </div>

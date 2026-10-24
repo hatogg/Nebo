@@ -22,16 +22,20 @@ import java.util.Locale
 import java.util.concurrent.Executors
 
 /**
- * Фонова служба: раз на 15 с перевіряє тривоги, тримає зв'язок з годинником,
- * оновлює циферблат і шле сповіщення про тривогу в моїй області.
+ * Фонова служба: раз на 15 с перевіряє тривоги по районах, тримає зв'язок з годинником,
+ * оновлює циферблат (не частіше за обраний інтервал) і шле сповіщення про зміни в моєму районі чи області.
  */
 class NeboService : Service() {
 
     private val main = Handler(Looper.getMainLooper())
     private val net = Executors.newSingleThreadExecutor { r -> Thread(r, "nebo-alerts") }
     private var running = false
-    private var throttledPushPending = false
+    private var scheduledPush = false
     @Volatile private var pauseUntil = 0L
+    /** район -> до коли показувати «нещодавній відбій» */
+    private val recentUntil = HashMap<Int, Long>()
+    /** Коли вперше побачили тривогу, якщо джерело не дало часу початку. */
+    private val firstSeen = HashMap<String, Long>()
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -68,9 +72,8 @@ class NeboService : Service() {
     }
 
     private fun poll() {
-        val prefs = Watch.prefs
         if (System.currentTimeMillis() < pauseUntil) return
-        val st = try {
+        val fetched = try {
             Alerts.fetch(this)
         } catch (e: Alerts.RateLimited) {
             Timber.w("alerts rate limited, retry in ${e.retryAfterSec}s")
@@ -85,37 +88,68 @@ class NeboService : Service() {
         }
         fetchError = null
         val prev = current
-        // Час початку: беремо з джерела або запам'ятовуємо сами
-        val since = HashMap(st.since)
-        for (r in st.active) {
-            if (since[r] == null) {
-                var t = prefs.alertSince(r)
-                if (t == 0L) { t = System.currentTimeMillis(); prefs.setAlertSince(r, t) }
-                since[r] = t
-            }
+        val now = System.currentTimeMillis()
+
+        // Нещодавній відбій: район був у тривозі, а тепер тихо
+        val raions = HashMap(fetched.raions)
+        for ((i, lvl) in prev.raions) {
+            if (lvl >= AlertState.YELLOW && (raions[i] ?: 0) < AlertState.YELLOW) recentUntil[i] = now + RECENT_MS
         }
-        for (r in prev.active - st.active) prefs.setAlertSince(r, 0L)
-        val now = st.copy(since = since)
-        current = now
-        main.post { onNewState(prev, now) }
+        recentUntil.entries.removeAll { it.value < now || (raions[it.key] ?: 0) >= AlertState.YELLOW }
+        for (i in recentUntil.keys) if ((raions[i] ?: 0) < AlertState.RECENT) raions[i] = AlertState.RECENT
+
+        // Час початку, якщо джерело його не дало
+        val since = HashMap(fetched.since)
+        val activeKeys = raions.filterValues { it >= AlertState.YELLOW }.keys.map { "r$it" } +
+            fetched.cities.filterValues { it >= AlertState.YELLOW }.keys.map { "c$it" }
+        firstSeen.keys.retainAll(activeKeys.toSet())
+        for (k in activeKeys) if (since[k] == null) since[k] = firstSeen.getOrPut(k) { now }
+
+        val st = fetched.copy(raions = raions, since = since)
+        current = st
+        main.post { onNewState(prev, st) }
+    }
+
+    /** 0 — тихо, 1 — жовтий рівень, 2 — тривога. */
+    private fun category(level: Int) = when {
+        level >= AlertState.PARTIAL -> 2
+        level == AlertState.YELLOW -> 1
+        else -> 0
     }
 
     private fun onNewState(prev: AlertState, now: AlertState) {
         val prefs = Watch.prefs
-        val home = MapData.get(this).find(prefs.home)?.name ?: prefs.home
-        val wasHome = prev.isActive(home)
-        val isHome = now.isActive(home)
+        val map = MapData.get(this)
+        val home = map.home(prefs.home)
+        val short = home?.short ?: prefs.home
+        val was = category(prev.homeLevel(map, home))
+        val isNow = category(now.homeLevel(map, home))
         val first = prev.fetchedAt == 0L
-        val homeChanged = !first && wasHome != isHome
+        val homeChanged = !first && was != isNow
 
         if (homeChanged && prefs.alertNotify) {
-            val short = MapData.get(this).find(home)?.short ?: home
-            if (isHome) {
-                Watch.sendAlert("ПОВІТРЯНА ТРИВОГА — $short. Пройдіть в укриття!")
-                notifyPhone("Повітряна тривога — $short", "Оголошено о " + hhmm(now.since[home] ?: System.currentTimeMillis()))
-            } else {
-                Watch.sendAlert("ВІДБІЙ тривоги — $short")
-                notifyPhone("Відбій тривоги — $short", "О " + hhmm(System.currentTimeMillis()))
+            val time = hhmm(System.currentTimeMillis())
+            when {
+                isNow == 2 -> {
+                    Watch.sendAlert("ПОВІТРЯНА ТРИВОГА — $short. Пройдіть в укриття!")
+                    notifyPhone("Повітряна тривога — $short", "Оголошено о $time")
+                }
+                isNow == 1 && was == 2 -> {
+                    Watch.sendAlert("Тривогу знято, лишається ЖОВТИЙ рівень — $short")
+                    notifyPhone("Жовтий рівень — $short", "Тривогу знято о $time, загроза дронів лишається")
+                }
+                isNow == 1 && prefs.yellowNotify -> {
+                    Watch.sendAlert("ЖОВТИЙ РІВЕНЬ — $short: загроза дронів")
+                    notifyPhone("Жовтий рівень — $short", "Загроза дронів з $time")
+                }
+                isNow == 0 && was == 2 -> {
+                    Watch.sendAlert("ВІДБІЙ тривоги — $short")
+                    notifyPhone("Відбій тривоги — $short", "О $time")
+                }
+                isNow == 0 && prefs.yellowNotify -> {
+                    Watch.sendAlert("Жовтий рівень знято — $short")
+                    notifyPhone("Жовтий рівень знято — $short", "О $time")
+                }
             }
         }
 
@@ -123,27 +157,24 @@ class NeboService : Service() {
         broadcast()
 
         if (!prefs.autoPush || prefs.deviceAddress == null) return
-        val sig = now.signature + "#" + prefs.home + "#" + prefs.faceStyle + "#" + prefs.timeStyle
-        if (sig == prefs.lastPushSignature) return
-        val mapChanged = prev.signature != now.signature
+        if (signatureOf(now) == prefs.lastPushSignature) return
         when {
-            // Перший запуск або змінились налаштування — оновлюємо одразу
+            // Перший запуск, змінились налаштування або статус дому — одразу
             first || homeChanged || prefs.lastPushSignature == null -> Watch.pushFace(now, "home")
-            prefs.pushPolicy == Prefs.POLICY_ALL && (mapChanged || !throttledPushPending) -> schedulePush()
+            prefs.pushPolicy == Prefs.POLICY_ALL -> schedulePush()
         }
     }
 
-    /** Зміни в інших областях збираємо разом, щоб не перезаписувати циферблат щохвилини. */
+    /** Зміни в інших районах надсилаємо не частіше за обраний інтервал (30 с, 1 хв, 3 хв). */
     private fun schedulePush() {
-        if (throttledPushPending) return
-        val since = System.currentTimeMillis() - Watch.prefs.lastPushTime
-        val delay = (MIN_PUSH_INTERVAL_MS - since).coerceAtLeast(5_000L)
-        throttledPushPending = true
+        if (scheduledPush) return
+        val interval = Watch.prefs.pushIntervalSec * 1000L
+        val sinceLast = System.currentTimeMillis() - Watch.prefs.lastPushTime
+        val delay = (interval - sinceLast).coerceAtLeast(1_000L)
+        scheduledPush = true
         main.postDelayed({
-            throttledPushPending = false
-            val prefs = Watch.prefs
-            val sig = current.signature + "#" + prefs.home + "#" + prefs.faceStyle + "#" + prefs.timeStyle
-            if (sig != prefs.lastPushSignature) Watch.pushFace(current, "map")
+            scheduledPush = false
+            if (signatureOf(current) != Watch.prefs.lastPushSignature) Watch.pushFace(current, "map")
         }, delay)
     }
 
@@ -160,15 +191,21 @@ class NeboService : Service() {
     private fun buildNotification(st: AlertState): Notification {
         val prefs = Watch.prefs
         val map = MapData.get(this)
-        val home = map.find(prefs.home)
-        val n = map.oblastCount(st.active)
-        val title = when {
-            st.fetchedAt == 0L -> "Небо працює"
-            home != null && st.isActive(home.name) -> "Тривога: ${home.short}"
-            else -> "${home?.short ?: prefs.home}: тихо"
+        val home = map.home(prefs.home)
+        val short = home?.short ?: prefs.home
+        val (red, yellow) = st.counts(map)
+        val title = if (st.fetchedAt == 0L) "Небо працює" else when (category(st.homeLevel(map, home))) {
+            2 -> "Тривога: $short"
+            1 -> "Жовтий рівень: $short"
+            else -> "$short: тихо"
         }
-        val text = if (st.fetchedAt == 0L) "Отримую дані про тривоги…"
-        else if (n == 0) "Тривог в Україні немає" else "Тривога в $n " + FaceRenderer.plural(n, "області", "областях", "областях")
+        val text = when {
+            st.fetchedAt == 0L -> "Отримую дані про тривоги…"
+            red == 0 && yellow == 0 -> "Тривог в Україні немає"
+            yellow == 0 -> "Тривога в $red " + FaceRenderer.plural(red, "області", "областях", "областях")
+            red == 0 -> "Жовтий рівень в $yellow " + FaceRenderer.plural(yellow, "області", "областях", "областях")
+            else -> "Тривога в $red обл., жовтий рівень ще в $yellow"
+        }
         val pi = PendingIntent.getActivity(
             this, 0, Intent(this, MainActivity::class.java),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
@@ -210,7 +247,7 @@ class NeboService : Service() {
     companion object {
         const val ACTION_REFRESH = "ua.nebo.watch.REFRESH"
         private const val POLL_MS = 15_000L
-        private const val MIN_PUSH_INTERVAL_MS = 3 * 60_000L
+        private const val RECENT_MS = 20 * 60_000L
         private const val NOTIF_ID = 1
         private const val ALERT_ID = 2
         private const val CH_STATUS = "status"
@@ -223,6 +260,13 @@ class NeboService : Service() {
 
         val listeners = java.util.concurrent.CopyOnWriteArraySet<(JSONObject) -> Unit>()
 
+        /** Підпис усього, що видно на циферблаті: тривоги + налаштування. */
+        fun signatureOf(st: AlertState): String {
+            val p = Watch.prefs
+            val sig = if (p.showRecent) st.signature else st.copy(raions = st.raions.filterValues { it != AlertState.RECENT }).signature
+            return sig + "#" + p.home + "#" + p.faceStyle + "#" + p.timeStyle + "#" + p.showRecent
+        }
+
         fun start(context: Context, refresh: Boolean = false) {
             val i = Intent(context, NeboService::class.java)
             if (refresh) i.action = ACTION_REFRESH
@@ -233,17 +277,19 @@ class NeboService : Service() {
             val prefs = Watch.prefs
             val map = MapData.get(context)
             val st = current
-            val home = map.find(prefs.home)
-            val active = org.json.JSONArray()
-            st.active.forEach { active.put(it) }
+            val home = map.home(prefs.home)
+            val (red, yellow) = st.counts(map)
             return JSONObject()
                 .put("fetchedAt", st.fetchedAt)
-                .put("active", active)
-                .put("count", map.oblastCount(st.active))
+                .put("source", st.source)
+                .put("red", red)
+                .put("yellow", yellow)
                 .put("home", prefs.home)
                 .put("homeShort", home?.short ?: prefs.home)
-                .put("homeActive", home != null && st.isActive(home.name))
-                .put("homeSince", home?.let { st.since[it.name] } ?: 0L)
+                .put("homeLevel", st.homeLevel(map, home))
+                .put("homePartial", st.homePartial(map, home))
+                .put("homeSince", st.homeSince(map, home))
+                .put("sig", st.signature)
                 .put("error", fetchError ?: JSONObject.NULL)
         }
 
@@ -257,7 +303,7 @@ class NeboService : Service() {
                 setShowBadge(false)
             })
             nm.createNotificationChannel(NotificationChannel(CH_ALERT, "Тривоги в моїй області", NotificationManager.IMPORTANCE_HIGH).apply {
-                description = "Початок і відбій тривоги"
+                description = "Початок і відбій тривоги, жовтий рівень"
             })
         }
     }

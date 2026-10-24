@@ -36,7 +36,8 @@ h2{font-family:Unb;font-size:17px;margin:0 0 14px;letter-spacing:-.01em}
 .time b{font-family:system-ui,sans-serif;font-weight:500;font-size:28px;letter-spacing:.02em}
 .time span{font-size:11px;margin-top:4px;letter-spacing:.08em}
 .hero-side{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
-.home-line{font-family:Unb;font-size:18px;line-height:1.2}
+.home-line{font-family:Unb;font-size:18px;line-height:1.2;overflow-wrap:anywhere}
+.home-line span{display:block;font-family:Man;font-weight:700;font-size:15px;color:var(--text);margin-top:3px}
 .home-line.alert{color:#FF6B6E}
 .home-line.calm{color:var(--green)}
 
@@ -107,3 +108,12 @@ footer p{margin:0 0 8px}
   .top h1{font-size:26px}
   .chip{padding:7px 10px;font-size:12px}
 }
+
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:-4px 6px 14px;color:var(--muted);font-size:12.5px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.l-red{background:#E5383B}.l-part{background:#A9282C}.l-yellow{background:#F2B51E}.l-recent{background:#4A2A30;outline:1px solid #6b4a50}
+.home-line.yellow{color:#FFC93C}
+.diag{margin:12px 2px 6px;word-break:break-word}
+.btn.full{width:100%;margin-top:8px}
+.sub-h{margin:14px 2px 4px;color:var(--muted);font-size:13px}

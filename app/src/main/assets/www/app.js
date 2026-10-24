@@ -71,25 +71,33 @@
     $('pushBar').style.width = (w.progress || 0) + '%';
     $('pushText').textContent = (w.stage || 'Готую…') + (w.progress ? ' ' + w.progress + '%' : '');
     $('lastPush').textContent = w.lastPush ? 'Оновлено на годиннику ' + ago(w.lastPush) : '';
+    $('diagLine').textContent = w.diag ? 'Циферблат: ' + w.diag : '';
   }
 
   function renderAlerts() {
     const a = S.alerts;
     const hl = $('homeLine');
+    const obl = (n) => n + ' ' + plural(n, 'області', 'областях', 'областях');
+    const summary = a.red && a.yellow ? 'Тривога в ' + obl(a.red) + ', жовтий рівень ще в ' + a.yellow
+      : a.red ? 'Тривога в ' + obl(a.red) : a.yellow ? 'Жовтий рівень в ' + obl(a.yellow) : 'Тривог в Україні немає';
     if (!a.fetchedAt) {
       hl.className = 'home-line'; hl.textContent = a.homeShort;
       $('countLine').textContent = a.error ? a.error : 'Отримую дані про тривоги…';
-    } else if (a.homeActive) {
+    } else if (a.homeLevel >= 3) {
       hl.className = 'home-line alert';
-      hl.textContent = 'Тривога · ' + a.homeShort;
-      $('countLine').textContent = (a.homeSince ? 'з ' + since(a.homeSince) + '. ' : '') + 'Всього ' + a.count + ' ' + plural(a.count, 'область', 'області', 'областей');
+      hl.innerHTML = 'Тривога<span>' + esc(a.homeShort) + '</span>';
+      $('countLine').textContent = (a.homePartial || a.homeLevel === 3 ? 'У частині. ' : '') + (a.homeSince ? 'З ' + since(a.homeSince) + '. ' : '') + summary;
+    } else if (a.homeLevel === 2) {
+      hl.className = 'home-line yellow';
+      hl.innerHTML = 'Жовтий рівень<span>' + esc(a.homeShort) + '</span>';
+      $('countLine').textContent = 'Загроза дронів' + (a.homeSince ? ' з ' + since(a.homeSince) : '') + '. ' + summary;
     } else {
       hl.className = 'home-line calm';
-      hl.textContent = a.homeShort + ' — тихо';
-      $('countLine').textContent = a.count ? 'Тривога в ' + a.count + ' ' + plural(a.count, 'області', 'областях', 'областях') : 'Тривог в Україні немає';
+      hl.innerHTML = 'Тихо<span>' + esc(a.homeShort) + '</span>';
+      $('countLine').textContent = (a.homeLevel === 1 ? 'Щойно був відбій. ' : '') + summary;
     }
     $('homeName').textContent = a.homeShort;
-    $('srcLine').textContent = a.error ? 'Помилка: ' + a.error : (a.fetchedAt ? 'Дані оновлено ' + ago(a.fetchedAt) + ' · перевірка кожні 15 с' : '');
+    $('srcLine').textContent = a.error ? 'Помилка: ' + a.error : (a.fetchedAt ? 'Дані оновлено ' + ago(a.fetchedAt) + ' · ' + (a.source === 'alerts.in.ua' ? 'по районах' : 'лише по областях') : '');
   }
 
   function setSeg(id, v) { $(id).querySelectorAll('button').forEach((b) => b.classList.toggle('on', b.dataset.v === String(v))); }
@@ -98,6 +106,10 @@
     const p = S.prefs;
     setSeg('faceSeg', p.faceStyle);
     setSeg('policySeg', p.pushPolicy);
+    setSeg('intervalSeg', p.pushInterval);
+    $('yellowNotify').checked = p.yellowNotify;
+    $('showRecent').checked = p.showRecent;
+    $('intervalSeg').style.opacity = p.autoPush && p.pushPolicy === 'all' ? 1 : 0.4;
     $('timeSw').querySelectorAll('button').forEach((b) => b.classList.toggle('on', b.dataset.v === String(p.timeStyle)));
     $('alertNotify').checked = p.alertNotify;
     $('autoPush').checked = p.autoPush;
@@ -154,20 +166,47 @@
       '<div class="btns"><button class="btn ghost" data-close>Скасувати</button><button class="btn primary" id="doBind">Прив\'язати</button></div>');
     $('doBind').onclick = () => { A.bind(d.address, d.name); closeSheet(); toast('Підключаюсь до годинника…'); };
   }
+  function chooseHome(name) {
+    A.setPref('home', name); closeSheet(); load(); toast('Збережено');
+  }
   function regionSheet() {
     const cur = S.prefs.home;
-    openSheet('region', '<h3>Моя область</h3><input class="search" id="rq" placeholder="Пошук"><div class="list" id="rl"></div>');
+    openSheet('region', '<h3>Мій район чи область</h3><p class="muted small">Тривоги тепер оголошують по районах, тож точніше обрати свій район.</p><input class="search" id="rq" placeholder="Пошук області чи району"><div class="list" id="rl"></div>');
     const draw = (q) => {
       q = (q || '').toLowerCase();
-      $('rl').innerHTML = S.regions.filter((r) => !q || r.short.toLowerCase().includes(q) || r.name.toLowerCase().includes(q))
-        .map((r) => '<button class="item' + (r.name === cur ? ' on' : '') + '" data-n="' + esc(r.name) + '"><span class="grow"><b>' + esc(r.short) + '</b><div class="muted small">' + esc(r.name) + '</div></span></button>').join('');
-      $('rl').querySelectorAll('.item').forEach((b) => b.onclick = () => {
-        A.setPref('home', b.dataset.n); closeSheet(); load();
-        toast('Область змінено');
-      });
+      let html = '';
+      if (!q) {
+        html = S.regions.map((r) => '<button class="item' + (r.name === cur ? ' on' : '') + '" data-o="' + esc(r.name) + '"><span class="grow"><b>' + esc(r.short) + '</b><div class="muted small">' + esc(r.name) + (r.raions.length ? ' · ' + r.raions.length + ' ' + plural(r.raions.length, 'район', 'райони', 'районів') : '') + '</div></span></button>').join('');
+      } else {
+        const hits = [];
+        S.regions.forEach((r) => {
+          if (r.short.toLowerCase().includes(q) || r.name.toLowerCase().includes(q)) hits.push({ n: r.name, t: r.short, s: r.name });
+          r.raions.forEach((d) => { if (d.name.toLowerCase().includes(q)) hits.push({ n: d.name, t: d.short, s: r.short }); });
+        });
+        html = hits.slice(0, 40).map((h) => '<button class="item' + (h.n === cur ? ' on' : '') + '" data-n="' + esc(h.n) + '"><span class="grow"><b>' + esc(h.t) + '</b><div class="muted small">' + esc(h.s) + '</div></span></button>').join('') || '<p class="muted">Нічого не знайдено</p>';
+      }
+      $('rl').innerHTML = html;
+      $('rl').querySelectorAll('.item[data-n]').forEach((b) => b.onclick = () => chooseHome(b.dataset.n));
+      $('rl').querySelectorAll('.item[data-o]').forEach((b) => b.onclick = () => raionSheet(b.dataset.o));
     };
     draw('');
     $('rq').oninput = (e) => draw(e.target.value);
+  }
+  function raionSheet(oblast) {
+    const r = S.regions.find((x) => x.name === oblast);
+    if (!r || !r.raions.length) { chooseHome(oblast); return; }
+    const cur = S.prefs.home;
+    openSheet('raion', '<h3>' + esc(r.short) + '</h3><button class="link small" id="backReg">← Усі області</button>' +
+      '<div class="list"><button class="item' + (cur === r.name ? ' on' : '') + '" data-n="' + esc(r.name) + '"><span class="grow"><b>Уся область</b><div class="muted small">Тривога, якщо вона хоч в одному районі</div></span></button>' +
+      r.raions.map((d) => '<button class="item' + (d.name === cur ? ' on' : '') + '" data-n="' + esc(d.name) + '"><span class="grow"><b>' + esc(d.name) + '</b></span></button>').join('') + '</div>');
+    $('sheetBody').querySelectorAll('.item[data-n]').forEach((b) => b.onclick = () => chooseHome(b.dataset.n));
+    $('backReg').onclick = regionSheet;
+  }
+  function logSheet() {
+    openSheet('log', '<h3>Журнал для розробника</h3><p class="muted small">Якщо щось не працює, надішліть цей журнал — там немає особистих даних, лише стан годинника й помилки.</p>' +
+      '<button class="btn primary full" id="shareLog">Надіслати журнал</button><button class="btn ghost full" id="copyLog">Скопіювати</button>');
+    $('shareLog').onclick = () => A.shareLog();
+    $('copyLog').onclick = () => { A.copyLog(); toast('Журнал скопійовано'); };
   }
 
   // ---------- події інтерфейсу ----------
@@ -184,6 +223,10 @@
   $('policySeg').onclick = (e) => { const v = e.target.dataset && e.target.dataset.v; if (!v) return; A.setPref('pushPolicy', v); S.prefs.pushPolicy = v; renderPrefs(); };
   $('timeSw').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; A.setPref('timeStyle', b.dataset.v); S.prefs.timeStyle = +b.dataset.v; renderPrefs(); };
   $('alertNotify').onchange = (e) => { A.setPref('alertNotify', String(e.target.checked)); S.prefs.alertNotify = e.target.checked; };
+  $('logBtn').onclick = logSheet;
+  $('intervalSeg').onclick = (e) => { const v = e.target.dataset && e.target.dataset.v; if (!v) return; A.setPref('pushInterval', v); S.prefs.pushInterval = +v; renderPrefs(); };
+  $('yellowNotify').onchange = (e) => { A.setPref('yellowNotify', String(e.target.checked)); S.prefs.yellowNotify = e.target.checked; };
+  $('showRecent').onchange = (e) => { A.setPref('showRecent', String(e.target.checked)); S.prefs.showRecent = e.target.checked; refreshPreview(); };
   $('autoPush').onchange = (e) => { A.setPref('autoPush', String(e.target.checked)); S.prefs.autoPush = e.target.checked; renderPrefs(); };
   $('forward').onchange = (e) => {
     A.setPref('forward', String(e.target.checked)); S.prefs.forward = e.target.checked; renderPerm();
@@ -205,9 +248,12 @@
         case 'error':
           S.watch.error = data.message; renderWatch(); toast(data.message);
           break;
+        case 'toast':
+          toast(data.message);
+          break;
         case 'alerts': {
           S.alerts = data; renderAlerts();
-          const sig = (data.active || []).slice().sort().join('|') + data.home;
+          const sig = (data.sig || '') + data.home;
           if (sig !== lastAlertsSig) { lastAlertsSig = sig; refreshPreview(); }
           break;
         }

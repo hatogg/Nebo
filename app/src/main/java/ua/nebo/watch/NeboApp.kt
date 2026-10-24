@@ -31,6 +31,8 @@ class NeboApp : Application() {
             override fun isLoggable(tag: String?, priority: Int): Boolean =
                 BuildConfig.DEBUG || priority > Log.DEBUG
         })
+        Timber.plant(LogBuffer)
+        Timber.tag("Nebo").i("start ${BuildConfig.VERSION_NAME} Android ${android.os.Build.VERSION.RELEASE} ${android.os.Build.MANUFACTURER} ${android.os.Build.MODEL}")
         RxBleClient.updateLogOptions(
             LogOptions.Builder()
                 .setLogLevel(if (BuildConfig.DEBUG) LogConstants.DEBUG else LogConstants.WARN)
