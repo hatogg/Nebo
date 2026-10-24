@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Небо</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app">
+  <header class="top">
+    <div>
+      <h1>Небо</h1>
+      <p class="sub">Карта тривог на годиннику</p>
+    </div>
+    <span id="chip" class="chip off"><i></i><b>Немає годинника</b></span>
+  </header>
+
+  <section class="hero card">
+    <div class="watch">
+      <div class="bezel"><img id="preview" alt="Циферблат"><div class="time"><b id="fakeTime">09:30</b><span id="fakeDate">ПТ 15</span></div></div>
+    </div>
+    <div class="hero-side">
+      <div id="homeLine" class="home-line">—</div>
+      <div id="countLine" class="muted">Отримую дані про тривоги…</div>
+      <button id="pushBtn" class="btn primary">Надіслати на годинник</button>
+      <div id="pushBox" class="push hidden">
+        <div class="bar"><i id="pushBar"></i></div>
+        <div id="pushText" class="muted small">Готую…</div>
+      </div>
+      <div id="lastPush" class="muted small"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Годинник</h2>
+    <div id="devNone">
+      <p class="muted">Підключіть K61 Pro або інший годинник, що працює з FitCloudPro.</p>
+      <button id="findBtn" class="btn primary">Знайти годинник</button>
+    </div>
+    <div id="devSome" class="hidden">
+      <div class="row dev">
+        <div class="dev-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="3"/><path d="M9 6l1-3h4l1 3M9 18l1 3h4l1-3"/></svg></div>
+        <div class="grow"><b id="devName">Годинник</b><div id="devState" class="muted small">—</div></div>
+      </div>
+      <div id="authBox" class="warn hidden">Годинник прив'язаний до іншого застосунку (мабуть, FitCloudPro). <button id="rebindBtn" class="link">Прив'язати знову</button></div>
+      <div id="errBox" class="warn hidden"></div>
+      <div class="btns"><button id="unbindBtn" class="btn ghost">Відв'язати</button><button id="changeBtn" class="btn ghost">Інший годинник</button></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Циферблат</h2>
+    <div class="seg" id="faceSeg">
+      <button data-v="map">Карта України</button>
+      <button data-v="home">Моя область</button>
+    </div>
+    <div class="label">Колір годинника</div>
+    <div class="swatches" id="timeSw">
+      <button data-v="0" title="Білий"><i style="background:#fff"></i>Білий</button>
+      <button data-v="1" title="Чорний"><i style="background:#111;border-color:#555"></i>Чорний</button>
+      <button data-v="2" title="Жовтий"><i style="background:#FFD338"></i>Жовтий</button>
+      <button data-v="3" title="Зелений"><i style="background:#7CF06A"></i>Зелений</button>
+      <button data-v="4" title="Сірий"><i style="background:#9AA0AA"></i>Сірий</button>
+    </div>
+    <p class="muted small">Час і дату малює сам годинник угорі, карта — наш фон. На годинниках нового формату кольори можуть називатися «Стиль 1–5».</p>
+  </section>
+
+  <section class="card">
+    <h2>Тривоги</h2>
+    <button id="homeBtn" class="row pick"><span class="grow"><span class="muted small">Моя область</span><b id="homeName">Київ</b></span><svg class="chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <label class="row sw"><span class="grow">Сповіщення про тривогу на годиннику<small>Вібрація й текст при оголошенні та відбої</small></span><input type="checkbox" id="alertNotify"><i></i></label>
+    <label class="row sw"><span class="grow">Оновлювати циферблат сам<small>Коли змінюються тривоги</small></span><input type="checkbox" id="autoPush"><i></i></label>
+    <div class="seg small" id="policySeg">
+      <button data-v="all">Будь-яка зміна на карті</button>
+      <button data-v="home">Лише моя область</button>
+    </div>
+    <p id="srcLine" class="muted small"></p>
+  </section>
+
+  <section class="card">
+    <h2>Телефон</h2>
+    <label class="row sw"><span class="grow">Пересилати сповіщення<small>Telegram, Viber, SMS та інші — замість FitCloudPro</small></span><input type="checkbox" id="forward"><i></i></label>
+    <div id="accessBox" class="warn hidden">Потрібен доступ до сповіщень. <button id="accessBtn" class="link">Відкрити налаштування</button></div>
+    <button id="callsBtn" class="row pick"><span class="grow">Дзвінки на годиннику<small id="callsState">Показувати вхідні й відхиляти з годинника</small></span><svg class="chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <button id="batteryBtn" class="row pick"><span class="grow">Робота у фоні без обмежень<small id="batteryState">Щоб тривоги приходили вчасно</small></span><svg class="chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </section>
+
+  <footer>
+    <p>Дані про тривоги — відкрите API ubilling.net.ua. Це неофіційне джерело: для важливих рішень користуйтеся офіційним застосунком «Повітряна тривога».</p>
+    <p>Карта © учасники OpenStreetMap. Годинник — через офіційний FitCloudPro SDK.</p>
+    <p id="ver"></p>
+  </footer>
+</div>
+
+<div id="sheet" class="sheet hidden">
+  <div class="scrim" data-close></div>
+  <div class="panel">
+    <div class="grab"></div>
+    <div id="sheetBody"></div>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>if (!(window.Android && window.Android.hello)) document.write('<script src="mock.js"><\/script>');</script>
+<script src="app.js"></script>
+</body>
+</html>
