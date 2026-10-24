@@ -1,0 +1,30 @@
+name: Alert sources probe
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/sources.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch sources
+        run: |
+          mkdir -p out
+          cd out
+          UA="Nebo/1.0 (Android)"
+          get(){ curl -s -m 20 -A "$UA" -D "$1.headers" -o "$1" "$2"; echo "$1 $(wc -c < "$1")" >> index.txt; sleep 2; }
+          get default.json "https://ubilling.net.ua/aerialalerts/"
+          for s in default skog klimenko jaam aiu ual; do get "raw_$s.json" "https://ubilling.net.ua/aerialalerts/?source=$s&raw="; done
+          for s in skog klimenko jaam aiu ual; do get "states_$s.json" "https://ubilling.net.ua/aerialalerts/?source=$s"; done
+          date -u > when.txt
+      - name: Publish
+        run: |
+          cd out
+          git init -q && git checkout -q -b probe && git add -A
+          git -c user.name=github-actions -c user.email=actions@github.com commit -qm probe
+          git push -f -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" probe
