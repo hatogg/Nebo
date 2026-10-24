@@ -70,9 +70,24 @@ class MainActivity : Activity(), Watch.Listener {
                     java.io.File(dir, "${name}_$style.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
                 }
             }
-            val live = runCatching { Alerts.fetch(this) }
+            // Розбір відповіді на зразку (не залежить від мережі)
+            val sample = """{"version":"1","states":{"Київська область":{"alertnow":true,"changed":"2026-10-24 21:05:00"},""" +
+                """"м. Київ":{"alertnow":true,"changed":"2026-10-24 21:06:00"},"Львівська область":{"alertnow":false,"changed":"2026-10-24 10:00:00"},""" +
+                """"Автономна Республіка Крим":{"alertnow":true},"Харківська область":{"alertnow":true,"changed":"2026-10-24 20:00:00"}}}"""
+            val parsed = runCatching { Alerts.parse(this, sample) }
+            java.io.File(dir, "parse.txt").writeText(
+                parsed.fold({ "OK active=" + it.active.sorted().joinToString(", ") + " since=" + it.since.mapValues { e -> java.util.Date(e.value) } }, { "FAIL " + it })
+            )
+            var live: Result<AlertState> = Result.failure(IllegalStateException("not tried"))
+            val log = StringBuilder()
+            for (attempt in 1..5) {
+                Thread.sleep(if (attempt == 1) 3_000L else 20_000L)
+                live = runCatching { Alerts.fetch(this) }
+                log.append("attempt ").append(attempt).append(": ").append(live.fold({ "OK" }, { it.toString() })).append('\n')
+                if (live.isSuccess) break
+            }
             java.io.File(dir, "live.txt").writeText(
-                live.fold({ "OK active=" + it.active.sorted().joinToString(", ") + " since=" + it.since }, { "FAIL " + it })
+                log.toString() + live.fold({ "OK active=" + it.active.sorted().joinToString(", ") + " since=" + it.since.mapValues { e -> java.util.Date(e.value) } }, { "FAIL " + it })
             )
             live.getOrNull()?.let { st ->
                 val bmp = r.render(410, 502, st, "м. Київ", Prefs.STYLE_MAP)

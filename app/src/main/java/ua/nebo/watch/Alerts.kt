@@ -43,6 +43,10 @@ object Alerts {
         conn.setRequestProperty("Accept", "application/json")
         try {
             val code = conn.responseCode
+            if (code == 429) {
+                val wait = conn.getHeaderField("Retry-After")?.trim()?.toLongOrNull() ?: 60L
+                throw RateLimited(wait.coerceIn(15L, 600L))
+            }
             if (code != 200) throw IllegalStateException("HTTP $code")
             val body = conn.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
             return parse(context, body)
@@ -50,6 +54,9 @@ object Alerts {
             conn.disconnect()
         }
     }
+
+    /** Сервер попросив зачекати (HTTP 429). */
+    class RateLimited(val retryAfterSec: Long) : Exception("Забагато запитів до джерела тривог, повтор через $retryAfterSec с")
 
     fun parse(context: Context, body: String): AlertState {
         val map = MapData.get(context)

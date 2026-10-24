@@ -60,7 +60,7 @@
 
     const btn = $('pushBtn');
     btn.disabled = !has || w.state !== 'CONNECTED' || w.pushing;
-    btn.textContent = !has ? 'Спершу підключіть годинник' : w.state !== 'CONNECTED' ? 'Годинник не на зв\'язку' : w.pushing ? 'Надсилаю…' : 'Надіслати на годинник';
+    btn.textContent = !has ? 'Підключіть годинник' : w.state !== 'CONNECTED' ? 'Немає зв\'язку' : w.pushing ? 'Надсилаю…' : 'Надіслати на годинник';
     $('pushBox').classList.toggle('hidden', !w.pushing);
     $('pushBar').style.width = (w.progress || 0) + '%';
     $('pushText').textContent = (w.stage || 'Готую…') + (w.progress ? ' ' + w.progress + '%' : '');

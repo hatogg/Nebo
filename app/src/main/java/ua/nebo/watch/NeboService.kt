@@ -31,6 +31,7 @@ class NeboService : Service() {
     private val net = Executors.newSingleThreadExecutor { r -> Thread(r, "nebo-alerts") }
     private var running = false
     private var throttledPushPending = false
+    @Volatile private var pauseUntil = 0L
 
     override fun onBind(intent: Intent?): IBinder? = null
 
@@ -45,7 +46,7 @@ class NeboService : Service() {
         if (!running) {
             running = true
             main.post(tick)
-        } else if (intent?.action == ACTION_REFRESH) {
+        } else if (intent?.action == ACTION_REFRESH && System.currentTimeMillis() - current.fetchedAt > 5_000L) {
             net.execute { poll() }
         }
         return START_STICKY
@@ -68,8 +69,14 @@ class NeboService : Service() {
 
     private fun poll() {
         val prefs = Watch.prefs
+        if (System.currentTimeMillis() < pauseUntil) return
         val st = try {
             Alerts.fetch(this)
+        } catch (e: Alerts.RateLimited) {
+            Timber.w("alerts rate limited, retry in ${e.retryAfterSec}s")
+            pauseUntil = System.currentTimeMillis() + e.retryAfterSec * 1000L
+            if (current.fetchedAt == 0L) { fetchError = "Джерело тривог перевантажене, повтор за хвилину"; broadcast() }
+            return
         } catch (e: Throwable) {
             Timber.w(e, "alerts fetch failed")
             fetchError = Watch.humanError(e)

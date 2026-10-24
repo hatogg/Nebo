@@ -100,3 +100,10 @@ footer p{margin:0 0 8px}
 .search{width:100%;background:var(--card2);border:0;border-radius:14px;padding:12px 14px;color:var(--text);font:inherit;outline:none}
 #toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:#EEF1F7;color:#0B0E17;padding:11px 16px;border-radius:14px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;max-width:90vw;text-align:center;z-index:30}
 #toast.show{opacity:1;transform:translateX(-50%)}
+
+@media (max-width:380px){
+  .hero{flex-direction:column;text-align:center;gap:16px}
+  .hero-side{width:100%;align-items:stretch}
+  .top h1{font-size:26px}
+  .chip{padding:7px 10px;font-size:12px}
+}
