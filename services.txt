@@ -1,0 +1,59 @@
+ACTIVITY MANAGER SERVICES (dumpsys activity services)
+  User 0 active services:
+  * ServiceRecord{657158f u0 ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0}
+    intent={cmp=ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0}
+    packageName=ua.nebo.watch
+    processName=com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0
+    baseDir=/data/app/~~5iO1jV5ucMGLJnh5k3dR-Q==/com.google.android.webview-89EptJ59_dVp3sXXB6Hmiw==/WebViewGoogle.apk
+    dataDir=/data/user/0/com.google.android.webview
+    app=ProcessRecord{9812647 3560:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0a192i0}
+    isolationHostProc=ProcessRecord{9812647 3560:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0a192i0}
+    mAllowWhileInUsePermissionInFgsReason=PROC_STATE_TOP
+    allowUiJobScheduling=false
+    recentCallingPackage=ua.nebo.watch
+    recentCallingUid=10192
+    allowStartForeground=PROC_STATE_TOP
+    startForegroundCount=0
+    infoAllowStartForeground=[callingPackage: ua.nebo.watch; callingUid: 10192; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { cmp=ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0 (has extras) }; code:PROC_STATE_TOP; tempAllowListReason:<null>; targetSdkVersion:34; callerTargetSdkVersion:34; startForegroundCount:0; bindFromPackage:null: isBindService:true]
+    createTime=-28s221ms startingBgTimeout=--
+    lastActivity=-26s74ms restartTime=-27s618ms createdFromFg=true
+    Bindings:
+    * IntentBindRecord{29bc26c CREATE}:
+      intent={cmp=ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0}
+      binder=android.os.BinderProxy@d16e035
+      requested=true received=true hasBound=true doRebind=false
+      * Client AppBindRecord{90bccca ProcessRecord{90894b3 3359:ua.nebo.watch/u0a192}}
+        Per-process Connections:
+          ConnectionRecord{6774047 u0 CR IMP ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0:@6d42f86 flags=0x80000041}
+          ConnectionRecord{719ad04 u0 CR WPRI ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0:@b4f9517 flags=0x80000021}
+    All Connections:
+      ConnectionRecord{6774047 u0 CR IMP ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0:@6d42f86 flags=0x80000041}
+      ConnectionRecord{719ad04 u0 CR WPRI ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0:@b4f9517 flags=0x80000021}
+
+  * ServiceRecord{56e3797 u0 ua.nebo.watch/.NeboService}
+    intent={cmp=ua.nebo.watch/.NeboService}
+    packageName=ua.nebo.watch
+    processName=ua.nebo.watch
+    baseDir=/data/app/~~E_SzXH_DZAhNw2tA11XzcA==/ua.nebo.watch-1htqpAT2H4K7NGr44Ug_8w==/base.apk
+    dataDir=/data/user/0/ua.nebo.watch
+    app=ProcessRecord{90894b3 3359:ua.nebo.watch/u0a192}
+    mAllowWhileInUsePermissionInFgsReason=PROC_STATE_TOP
+    allowUiJobScheduling=true
+    recentCallingPackage=ua.nebo.watch
+    recentCallingUid=10192
+    allowStartForeground=PROC_STATE_TOP
+    startForegroundCount=1
+    infoAllowStartForeground=[callingPackage: ua.nebo.watch; callingUid: 10192; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { cmp=ua.nebo.watch/.NeboService }; code:PROC_STATE_TOP; tempAllowListReason:<null>; targetSdkVersion:34; callerTargetSdkVersion:34; startForegroundCount:0; bindFromPackage:null: isBindService:false]
+    isForeground=true foregroundId=1 types=00000010 foregroundNoti=Notification(channel=status shortcut=null contentView=null vibrate=null sound=null defaults=0x0 flags=0x6a color=0x00000000 vis=PRIVATE)
+    createTime=-26s275ms startingBgTimeout=--
+    lastActivity=-26s275ms restartTime=-26s275ms createdFromFg=true
+    startRequested=true delayedStop=false stopIfKilled=false callStart=true lastStartId=1
+ startCommandResult=1
+
+  Connection bindings to services:
+  * ConnectionRecord{6774047 u0 CR IMP ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0:@6d42f86 flags=0x80000041}
+    binding=AppBindRecord{90bccca ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0:ua.nebo.watch}
+    conn=android.os.BinderProxy@6d42f86 flags=0x80000041
+  * ConnectionRecord{719ad04 u0 CR WPRI ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0:@b4f9517 flags=0x80000021}
+    binding=AppBindRecord{90bccca ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0:ua.nebo.watch}
+    conn=android.os.BinderProxy@b4f9517 flags=0x80000021

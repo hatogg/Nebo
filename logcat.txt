@@ -1,0 +1,278 @@
+11-01 02:41:11.977   519   808 I SdkSandboxManager: No SDKs used. Skipping SDK data reconcilation for CallingInfo{mUid=10192, mPackageName='ua.nebo.watch, mAppProcessToken='null'}
+11-01 02:41:12.147   519   981 V SplashScreenExceptionList: SplashScreen checking exception for package ua.nebo.watch (target sdk:34) -> false
+11-01 02:41:12.150   838   870 V WindowManagerShell: Transition requested: android.os.BinderProxy@a10562c TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=8 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=ua.nebo.watch/.MainActivity } baseActivity=ComponentInfo{ua.nebo.watch/ua.nebo.watch.MainActivity} topActivity=ComponentInfo{ua.nebo.watch/ua.nebo.watch.MainActivity} origActivity=null realActivity=ComponentInfo{ua.nebo.watch/ua.nebo.watch.MainActivity} numActivities=1 lastActiveTime=52032 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@53e48f5} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{83de68a ua.nebo.watch.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+11-01 02:41:12.152   519   981 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=ua.nebo.watch/.MainActivity (has extras)} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+11-01 02:41:12.247   519   550 I ActivityManager: Start proc 3359:ua.nebo.watch/u0a192 for next-top-activity {ua.nebo.watch/ua.nebo.watch.MainActivity}
+11-01 02:41:12.437   519  2485 D CoreBackPreview: Window{c24f296 u0 Splash Screen ua.nebo.watch}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@178c885, mPriority=0, mIsAnimationCallback=false}
+11-01 02:41:12.729  3359  3359 I ua.nebo.watch: Late-enabling -Xcheck:jni
+11-01 02:41:12.793  3359  3359 I ua.nebo.watch: Using CollectorTypeCC GC.
+11-01 02:41:12.793  3359  3359 W ua.nebo.watch: Unexpected CPU variant for x86: x86_64.
+11-01 02:41:12.793  3359  3359 W ua.nebo.watch: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+11-01 02:41:13.033   519   539 V WindowManager: Sent Transition #8 createdAt=11-01 02:41:12.123 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=8 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=ua.nebo.watch/.MainActivity } baseActivity=ComponentInfo{ua.nebo.watch/ua.nebo.watch.MainActivity} topActivity=ComponentInfo{ua.nebo.watch/ua.nebo.watch.MainActivity} origActivity=null realActivity=ComponentInfo{ua.nebo.watch/ua.nebo.watch.MainActivity} numActivities=1 lastActiveTime=52032 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{90112d9 Task{21aa10e #8 type=standard A=10192:ua.nebo.watch}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 128 - 0, 0) topActivityInfo=ActivityInfo{609549e ua.nebo.watch.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+11-01 02:41:13.033   519   539 V WindowManager:     info={id=8 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{90112d9 Task{21aa10e #8 type=standard A=10192:ua.nebo.watch}}} m=OPEN f=NONE leash=Surface(name=Task=8)/@0xaca6ac0 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0},{WCT{RemoteToken{2014411 Task{2f49381 #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x314463 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0}]}
+11-01 02:41:13.370   519   539 I PreBootBroadcaster: Pre-boot of {com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher} for user 0
+11-01 02:41:13.405  3359  3359 W ziparchive: Unable to open '/data/app/~~E_SzXH_DZAhNw2tA11XzcA==/ua.nebo.watch-1htqpAT2H4K7NGr44Ug_8w==/base.dm': No such file or directory
+11-01 02:41:13.405  3359  3359 W ziparchive: Unable to open '/data/app/~~E_SzXH_DZAhNw2tA11XzcA==/ua.nebo.watch-1htqpAT2H4K7NGr44Ug_8w==/base.dm': No such file or directory
+11-01 02:41:13.476   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:13.634  3359  3359 D nativeloader: Configuring clns-6 for other apk /data/app/~~E_SzXH_DZAhNw2tA11XzcA==/ua.nebo.watch-1htqpAT2H4K7NGr44Ug_8w==/base.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~E_SzXH_DZAhNw2tA11XzcA==/ua.nebo.watch-1htqpAT2H4K7NGr44Ug_8w==/lib/x86_64:/data/app/~~E_SzXH_DZAhNw2tA11XzcA==/ua.nebo.watch-1htqpAT2H4K7NGr44Ug_8w==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/ua.nebo.watch
+11-01 02:41:13.691  3359  3359 V GraphicsEnvironment: ANGLE GameManagerService for ua.nebo.watch: false
+11-01 02:41:13.691  3359  3359 V GraphicsEnvironment: ua.nebo.watch is not listed in per-application setting
+11-01 02:41:13.821  3359  3359 I Nebo    : start 1.3 Android 14 Google sdk_gphone64_x86_64
+11-01 02:41:13.862  3359  3359 I g       : FcSDK_v3.0.2.7
+11-01 02:41:14.543  1058  1562 W TelephonyPermissions: reportAccessDeniedToReadIdentifiers:ua.nebo.watch:getAllSubInfoList:1
+11-01 02:41:14.588  3260  3483 I Watchcat: Started
+11-01 02:41:14.810   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:14.946  1058  1058 D CarrierSvcBindHelper: onPackageAdded: ua.nebo.watch
+11-01 02:41:14.984   843   843 I SafetyLabelChangedBroadcastReceiver: received broadcast packageName: ua.nebo.watch, current user: UserHandle{0}, packageChangeEvent: NEW_INSTALL, intent user: UserHandle{0}
+11-01 02:41:14.993   519   539 W Looper  : Slow dispatch took 183ms android.fg h=android.os.Handler c=com.android.server.servicewatcher.ServiceWatcherImpl$$ExternalSyntheticLambda0@f5ca1e7 m=0
+11-01 02:41:15.004   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{c6d743d com.google.android.youtube/10139} BLOCKED
+11-01 02:41:15.004   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{8334432 com.google.android.googlequicksearchbox/10132} BLOCKED
+11-01 02:41:15.004   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{d477583 com.google.android.as/10125} BLOCKED
+11-01 02:41:15.004   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{38d2300 com.google.android.gm/10141} BLOCKED
+11-01 02:41:15.004   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{5c21739 com.google.android.dialer/10128} BLOCKED
+11-01 02:41:15.004   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{5cd717e com.google.android.contacts/10154} BLOCKED
+11-01 02:41:15.004   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{681e6df com.google.android.apps.youtube.music/10155} BLOCKED
+11-01 02:41:15.141  3359  3359 W ua.nebo.watch: Entry not found
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{7b14789 com.android.cts.priv.ctsshim/10190} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{c6d743d com.google.android.youtube/10139} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{73d638e com.android.internal.display.cutout.emulation.corner/10025} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{74cd7af com.android.internal.display.cutout.emulation.double/10048} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{8334432 com.google.android.googlequicksearchbox/10132} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{5c957bc com.google.android.onetimeinitializer/10126} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{6ddd345 com.google.android.ext.shared/10100} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{f302a9a com.android.internal.systemui.navbar.gestural_wide_back/10007} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{1993fcb com.android.virtualmachine.res/10174} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{1b233a8 com.google.android.federatedcompute/10186} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{8d5ec1 com.android.managedprovisioning.auto_generated_rro_product__/10024} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{9565666 com.android.carrierconfig.auto_generated_rro_vendor__/10078} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{fa0da7 com.android.systemui.emulation.pixel_3_xl/10034} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{cae254 com.android.systemui.emulation.pixel_4_xl/10059} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{85025fd com.android.systemui.emulation.pixel_fold/10009} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{46172f2 com.android.simappdialog.auto_generated_rro_product__/10030} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{7afdd43 com.android.htmlviewer/10116} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{1dcfc0 com.google.android.health.connect.backuprestore/10185} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{7e24f9 com.android.systemui.auto_generated_rro_product__/10031} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{68fcc3e com.google.android.apps.messaging/10129} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{1690a9f com.google.android.soundpicker/10137} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{f027ec com.google.android.marvin.talkbackoverlay/10077} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{ef317b5 com.google.android.configupdater/10130} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{9b86e4a com.android.internal.emulation.pixel_3a_xl/10044} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{c5db1bb com.android.internal.emulation.pixel_6_pro/10018} BLOCKED
+11-01 02:41:15.155   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{1add6d8 com.android.internal.emulation.pixel_7_pro/10004} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{18a7a31 com.android.internal.emulation.pixel_8_pro/10058} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{c172516 com.android.internal.emulation.pixel_3a/10053} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{82bae97 com.android.internal.emulation.pixel_4a/10011} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{9958884 com.android.internal.emulation.pixel_6a/10023} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{e5b886d com.android.internal.emulation.pixel_7a/10033} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{1d87ca2 com.google.android.overlay.googlewebview/10049} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{6729d33 com.google.android.hotspot2.osulogin/10171} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{324a8f0 com.android.simappdialog/10111} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{bb53e69 com.android.internal.display.cutout.emulation.hole/10073} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{365c0ee com.android.internal.display.cutout.emulation.tall/10065} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{92fd98f com.android.internal.systemui.navbar.threebutton/10068} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{143641c com.android.camera2/10144} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{bda5825 com.android.systemui.auto_generated_rro_vendor__/10076} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{470fdfa com.google.android.deskclock/10152} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{ada7fab com.android.internal.systemui.navbar.twobutton/10020} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{d477583 com.google.android.as/10125} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{38d2300 com.google.android.gm/10141} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{b30a608 com.android.internal.systemui.navbar.gestural_extra_wide_back/10045} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{87d51a1 com.android.systemui.emulation.pixel_3/10015} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{fc0ffc6 com.android.systemui.emulation.pixel_4/10037} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{c3f6b87 com.android.systemui.emulation.pixel_5/10071} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{b2e1ab4 com.android.systemui.emulation.pixel_6/10074} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{9fc66dd com.android.systemui.emulation.pixel_7/10072} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{3bd5252 com.android.systemui.emulation.pixel_8/10070} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{41d3923 com.android.nfc.auto_generated_rro_product__/10027} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{bec2e20 com.android.printspooler/10102} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{65d93d9 com.android.emergency.auto_generated_rro_product__/10041} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{bba419e com.google.android.connectivity.resources.goldfish.overlay/10079} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{c80447f com.android.dreams.basic/10104} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{b60c4c com.google.android.networkstack.tethering.emulator/10022} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{40a9495 com.android.providers.settings.auto_generated_rro_product__/10002} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{204d9aa com.google.android.as.oss/10121} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{9dea99b com.android.traceur.auto_generated_rro_product__/10005} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{45da138 com.google.android.devicelockcontroller/10175} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{5c21739 com.google.android.dialer/10128} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{c4ce511 com.android.internal.emulation.pixel_3/10046} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{6aee676 com.android.internal.emulation.pixel_4/10060} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{7f44477 com.android.internal.emulation.pixel_5/10012} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{ae798e4 com.android.internal.emulation.pixel_6/10038} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{989c14d com.android.internal.emulation.pixel_7/10067} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{71af402 com.android.internal.emulation.pixel_8/10039} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{85eb113 com.google.android.captiveportallogin/10113} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{1f75f50 com.android.musicfx/10088} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{d3e2549 com.google.android.apps.docs/10153} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{6d6e99e com.google.android.apps.maps/10156} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{2484e4e com.google.android.modulemetadata/10146} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{ef94b6f com.google.android.markup/10135} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{bfb207c com.android.providers.settings.auto_generated_rro_vendor__/10080} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{9bacd05 com.google.android.rkpdapp/10181} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{5cd717e com.google.android.contacts/10154} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{5df015a com.android.server.telecom.auto_generated_rro_product__/10032} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{7f92f8b com.google.android.overlay.googleconfig/10055} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{217c868 com.android.chrome/10150} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{ba03481 com.android.bips.auto_generated_rro_product__/10035} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{ffbd926 com.google.android.apps.customization.pixel/10143} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{3c93967 com.google.android.tag/10082} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{8d50314 com.google.android.overlay.permissioncontroller/10003} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{f1a97bd com.google.android.partnersetup/10124} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{1bc61b2 com.google.android.apps.wallpaper.nexus/10142} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{4a60503 com.google.android.apps.nexuslauncher/10168} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{3893c80 com.google.android.nearby.halfsheet/10177} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{cddf2b9 com.android.theme.font.notoserifsource/10066} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{e8ae6fe com.google.android.safetycenter.resources/10178} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{9f9ee5f com.android.internal.display.cutout.emulation.waterfall/10040} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{285a0ac com.android.internal.systemui.navbar.transparent/10029} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{ae20175 com.google.android.connectivity.resources/10176} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{42a750a com.android.providers.contacts.auto_generated_rro_product__/10019} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{579117b com.google.android.feedback/10162} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{8021b98 com.google.android.printservice.recommendation/10110} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{cde3ff1 com.google.android.apps.photos/10145} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{adf7a52 com.google.android.calendar/10148} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{782d7d6 com.google.android.documentsui/10098} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{5fd4a57 com.android.systemui.emulation.pixel_3a_xl/10021} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{fc95944 com.android.systemui.emulation.pixel_6_pro/10063} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{85ea2d com.android.systemui.emulation.pixel_7_pro/10054} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{22c9b62 com.android.systemui.emulation.pixel_8_pro/10001} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{42234f3 com.google.mainline.telemetry/10151} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{5a4c5b0 com.android.carrierconfig.auto_generated_rro_product__/10064} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{183fc29 com.android.providers.partnerbookmarks/10101} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{cbd0bae com.android.wallpaper.livepicker/10090} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{ca12d4f com.android.providers.telephony.auto_generated_rro_product__/10062} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{6888cdc com.android.phone.auto_generated_rro_vendor__/10081} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{13731e5 com.google.mainline.adservices/10136} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{1d234ba com.android.imsserviceentitlement/10117} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{46d4f6b com.google.android.healthconnect.controller/10184} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{87f9ac8 com.android.internal.emulation.pixel_2_xl/10016} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{e2e0761 com.android.internal.emulation.pixel_3_xl/10056} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{5dee286 com.android.internal.emulation.pixel_4_xl/10047} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{28f7747 com.android.internal.emulation.pixel_fold/10006} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{5579b74 com.android.bookmarkprovider/10114} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{762b89d com.google.android.overlay.pixelconfigcommon/10014} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{fb6a112 com.android.systemui.accessibility.accessibilitymenu.auto_generated_rro_product__/10050} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{bc240e3 com.android.systemui.emulation.pixel_3a/10013} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{40cfae0 com.android.systemui.emulation.pixel_4a/10000} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{7374199 com.android.systemui.emulation.pixel_6a/10042} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{dd9bc5e com.android.systemui.emulation.pixel_7a/10017} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{bce083f com.google.android.settings.intelligence/10118} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{ed05fbd com.google.android.projection.gearhead/10123} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{cf6e50c com.google.android.uwb.resources/10188} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{51289b2 com.android.cts.ctsshim/10191} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{2315e55 com.google.android.wifi.resources/10170} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{481406a com.google.android.wifi.dialog/10172} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{8a4e95b com.google.android.apps.wallpaper/10160} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{4b345f8 com.google.android.odad/10122} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{5768ad1 com.android.settings.auto_generated_rro_product__/10028} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{6af936 com.android.internal.systemui.navbar.gestural/10051} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{681e6df com.google.android.apps.youtube.music/10155} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{b3ec037 com.android.bluetoothmidiservice/10108} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{9d2c9a4 com.android.storagemanager.auto_generated_rro_product__/10026} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{108030d com.google.android.cellbroadcastreceiver/10189} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{a6572c2 com.android.phone.auto_generated_rro_product__/10061} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{a3528d3 android.auto_generated_rro_product__/10069} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{144dc10 com.android.internal.systemui.navbar.gestural_narrow_back/10052} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{9bec309 com.google.android.inputmethod.latin/10140} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{79bf90e android.auto_generated_rro_vendor__/10075} BLOCKED
+11-01 02:41:15.156   519   921 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{21f7f2f com.google.android.apps.restore/10119} BLOCKED
+11-01 02:41:15.161   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:15.171  3359  3359 W ua.nebo.watch: Accessing hidden method Landroid/os/Trace;->isTagEnabled(J)Z (unsupported, reflection, allowed)
+11-01 02:41:15.171  3359  3359 W ua.nebo.watch: Accessing hidden method Landroid/os/Trace;->traceBegin(JLjava/lang/String;)V (unsupported, reflection, allowed)
+11-01 02:41:15.171  3359  3359 W ua.nebo.watch: Accessing hidden method Landroid/os/Trace;->traceEnd(J)V (unsupported, reflection, allowed)
+11-01 02:41:15.171  3359  3359 W ua.nebo.watch: Accessing hidden method Landroid/os/Trace;->asyncTraceBegin(JLjava/lang/String;I)V (unsupported, reflection, allowed)
+11-01 02:41:15.171  3359  3359 W ua.nebo.watch: Accessing hidden method Landroid/os/Trace;->asyncTraceEnd(JLjava/lang/String;I)V (unsupported, reflection, allowed)
+11-01 02:41:15.320  3359  3520 I cr_VariationsUtils: Failed reading seed file "/data/user/0/ua.nebo.watch/app_webview/variations_seed_new"
+11-01 02:41:15.320  3359  3520 I cr_VariationsUtils: Failed reading seed file "/data/user/0/ua.nebo.watch/app_webview/variations_seed"
+11-01 02:41:15.362   519   539 W Looper  : Slow dispatch took 201ms android.fg h=android.os.Handler c=com.android.server.servicewatcher.ServiceWatcherImpl$$ExternalSyntheticLambda0@2faa473 m=0
+11-01 02:41:15.369   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:15.370   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:15.370   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:15.371   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:15.371   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:15.371   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:15.371   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:15.371   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:15.371   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:15.999   519   550 I ActivityManager: Start proc 3560:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0ai9000 for  {ua.nebo.watch/org.chromium.content.app.SandboxedProcessService0:0}
+11-01 02:41:16.334   519   549 D SystemServerTimingAsync: ssm.onUnlockedUser-0_com.android.server.net.watchlist.NetworkWatchlistService$Lifecycle
+11-01 02:41:16.334   519   549 V SystemServerTimingAsync: ssm.onUnlockedUser-0_com.android.server.net.watchlist.NetworkWatchlistService$Lifecycle took to complete: 0ms
+11-01 02:41:16.429  3560  3560 I cr_WebViewApkApp: Launched version=113.0.5672.136 minSdkVersion=29 isBundle=false processName=com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0
+11-01 02:41:16.441  1058  1058 D CarrierSvcBindHelper: onPackageModified: ua.nebo.watch
+11-01 02:41:16.451  1058  1360 D ImsResolver: maybeAddedImsService, packageName: ua.nebo.watch
+11-01 02:41:16.585   519   908 W ProcessStats: Tracking association SourceState{dee5360 ua.nebo.watch/10192 BTop #1290} whose proc state 2 is better than process ProcessState{8f78f60 com.google.android.gms.persistent/10131 pkg=com.google.android.gms} proc state 4 (10708 skipped)
+11-01 02:41:16.654  1058  1360 D ImsResolver: maybeAddedImsService, packageName: ua.nebo.watch
+11-01 02:41:16.759   519   550 I ActivityManager: Start proc 3656:com.google.android.webview:webview_apk/u0a134 for service {com.google.android.webview/org.chromium.android_webview.nonembedded.AwComponentUpdateService}
+11-01 02:41:16.759   519  1424 D ConnectivityService: requestNetwork for uid/pid:10192/3359 activeRequest: null callbackRequest: 85 [NetworkRequest [ REQUEST id=86, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: ua.nebo.watch UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647
+11-01 02:41:16.779   519   759 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=86, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: ua.nebo.watch UnderlyingNetworks: Null] ]
+11-01 02:41:16.779   519   759 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=86, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: ua.nebo.watch UnderlyingNetworks: Null] ]
+11-01 02:41:16.779   519   759 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=86, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: ua.nebo.watch UnderlyingNetworks: Null] ]
+11-01 02:41:16.779   519   759 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=86, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10192 RequestorUid: 10192 RequestorPkg: ua.nebo.watch UnderlyingNetworks: Null] ]
+11-01 02:41:17.656   519   596 I ActivityManager: Background started FGS: Allowed [callingPackage: ua.nebo.watch; callingUid: 10192; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { cmp=ua.nebo.watch/.NeboService }; code:PROC_STATE_TOP; tempAllowListReason:<null>; targetSdkVersion:34; callerTargetSdkVersion:34; startForegroundCount:0; bindFromPackage:null: isBindService:false]
+11-01 02:41:17.659  3656  3706 W cr_AWNetworkFetcherTask: 	at org.chromium.android_webview.nonembedded.NetworkFetcherTask.download(chromium-TrichromeWebViewGoogle6432.apk-stable-567263637:48)
+11-01 02:41:18.332   519  1220 D CoreBackPreview: Window{1a6feb2 u0 ua.nebo.watch/ua.nebo.watch.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@a8d25f5, mPriority=0, mIsAnimationCallback=false}
+11-01 02:41:18.764  3359  3715 W ua.nebo.watch: Verification of void ua.nebo.watch.ArtFaces.stars(android.graphics.Canvas, long, int, float, int, int) took 118.017ms (1262.52 bytecodes/s) (3856B approximate peak alloc)
+11-01 02:41:18.841   155   965 W keystore2: system/security/keystore2/src/watchdog.rs:114 - ### Keystore Watchdog report - BEGIN ###
+11-01 02:41:18.841   155   965 W keystore2: system/security/keystore2/src/watchdog.rs:123 - When extracting from a bug report, please include this header
+11-01 02:41:18.841   155   965 W keystore2: system/security/keystore2/src/watchdog.rs:124 - and all 1 records below.
+11-01 02:41:18.843   155   965 W keystore2: system/security/keystore2/src/watchdog.rs:164 - ThreadId(1) Calling get_rkpd_attestation_key() Pending: 501.762623ms Overdue 1.762954ms
+11-01 02:41:18.843   155   965 W keystore2: system/security/keystore2/src/watchdog.rs:175 - ### Keystore Watchdog report - END ###
+11-01 02:41:19.306   519   539 W ziparchive: Unable to open '/data/app/~~E_SzXH_DZAhNw2tA11XzcA==/ua.nebo.watch-1htqpAT2H4K7NGr44Ug_8w==/base.dm': No such file or directory
+11-01 02:41:19.366   519   539 I ActivityTaskManager: Displayed ua.nebo.watch/.MainActivity for user 0: +7s209ms
+11-01 02:41:19.428   519   908 W InputManager-JNI: Input channel object 'c24f296 Splash Screen ua.nebo.watch (client)' was disposed without first being removed with the input manager!
+11-01 02:41:19.438   519  2113 D CoreBackPreview: Window{c24f296 u0 Splash Screen ua.nebo.watch EXITING}: Setting back callback null
+11-01 02:41:19.799  1671  1671 I AiAiEcho: AppFetcherImplV2 updateApps package:[ua.nebo.watch], userId:[0], reason:[package is added.].
+11-01 02:41:20.327  1671  1671 I AiAiEcho: AppFetcherImpl onPackageChanged ua.nebo.watch.
+11-01 02:41:20.332  1671  3284 I AiAiEcho: AppIndexer Package:[ua.nebo.watch] UserProfile:[0] Enabled:[true].
+11-01 02:41:20.332  1671  3284 I AiAiEcho: AppFetcherImplV2 updateApps package:[ua.nebo.watch], userId:[0], reason:[package is updated.].
+11-01 02:41:20.505   155   965 W keystore2: system/security/keystore2/src/watchdog.rs:114 - ### Keystore Watchdog report - BEGIN ###
+11-01 02:41:20.505   155   965 W keystore2: system/security/keystore2/src/watchdog.rs:123 - When extracting from a bug report, please include this header
+11-01 02:41:20.505   155   965 W keystore2: system/security/keystore2/src/watchdog.rs:124 - and all 1 records below.
+11-01 02:41:20.505   155   965 W keystore2: system/security/keystore2/src/watchdog.rs:164 - ThreadId(1) Calling get_rkpd_attestation_key() Pending: 2.164069394s Overdue 1.664069655s
+11-01 02:41:20.505   155   965 W keystore2: system/security/keystore2/src/watchdog.rs:175 - ### Keystore Watchdog report - END ###
+11-01 02:41:20.873     0     0 I logd    : start watching /data/system/packages.list ...
+11-01 02:41:20.756  3359  3359 W ua.nebo.watch: Long monitor contention with owner Thread-5 (3715) at ua.nebo.watch.MapData ua.nebo.watch.MapData$Companion.get(android.content.Context)(MapData.kt:71) waiters=0 in ua.nebo.watch.MapData ua.nebo.watch.MapData$Companion.get(android.content.Context) for 1.170s
+11-01 02:41:20.759  3359  3821 W ua.nebo.watch: Long monitor contention with owner Thread-5 (3715) at ua.nebo.watch.MapData ua.nebo.watch.MapData$Companion.get(android.content.Context)(MapData.kt:71) waiters=1 in ua.nebo.watch.MapData ua.nebo.watch.MapData$Companion.get(android.content.Context) for 894ms
+11-01 02:41:20.872   519  2457 I ImeTracker: ua.nebo.watch:6504fcb4: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+11-01 02:41:20.872   519  2457 I ImeTracker: ua.nebo.watch:6504fcb4: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-01 02:41:20.933  1579  1579 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=ua.nebo.watch fieldId=0 fieldName=null extras=null}, false)
+11-01 02:41:21.426   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:21.513   519  3970 D SystemServerTimingAsync: ssm.onCompletedEventUser-0_{|Unlocked|}_com.android.server.net.watchlist.NetworkWatchlistService$Lifecycle
+11-01 02:41:21.513   519  3970 V SystemServerTimingAsync: ssm.onCompletedEventUser-0_{|Unlocked|}_com.android.server.net.watchlist.NetworkWatchlistService$Lifecycle took to complete: 0ms
+11-01 02:41:21.636   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:21.864   519   539 W Looper  : Slow dispatch took 224ms android.fg h=android.os.Handler c=com.android.server.servicewatcher.ServiceWatcherImpl$$ExternalSyntheticLambda0@a1ca021 m=0
+11-01 02:41:23.446  3359  3383 I ua.nebo.watch: Background concurrent copying GC freed 209717(8377KB) AllocSpace objects, 77(5420KB) LOS objects, 49% free, 6528KB/12MB, paused 55us,16us total 650.266ms
+11-01 02:41:25.549   519  1220 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{be388e1 com.google.android.settings.intelligence/10118} BLOCKED
+11-01 02:41:25.550   519  1220 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{29c0606 com.google.android.settings.intelligence/10118} BLOCKED
+11-01 02:41:26.283   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{fb091e2 com.google.android.googlequicksearchbox/10132} BLOCKED
+11-01 02:41:26.283   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{16d2973 com.android.camera2/10144} BLOCKED
+11-01 02:41:26.283   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{de030 com.google.android.devicelockcontroller/10175} BLOCKED
+11-01 02:41:26.283   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{55744a9 com.google.android.rkpdapp/10181} BLOCKED
+11-01 02:41:26.283   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{69fe398 com.google.android.projection.gearhead/10123} BLOCKED
+11-01 02:41:26.436   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:27.250   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:27.258   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:27.259   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:27.259   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:27.338   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:27.344   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:27.345   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:27.439  3359  3383 I ua.nebo.watch: Background young concurrent copying GC freed 17267(918KB) AllocSpace objects, 82(5156KB) LOS objects, 36% free, 8311KB/12MB, paused 54us,10us total 340.874ms
+11-01 02:41:27.513   519   539 W Looper  : Slow dispatch took 151ms android.fg h=android.os.Handler c=com.android.server.servicewatcher.ServiceWatcherImpl$$ExternalSyntheticLambda0@deeadb9 m=0
+11-01 02:41:27.558   519   539 W Looper  : Slow delivery took 254ms android.fg h=android.os.Handler c=com.android.server.servicewatcher.ServiceWatcherImpl$$ExternalSyntheticLambda0@12d25d1 m=0
+11-01 02:41:27.610   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] chose new implementation 10131/com.google.android.gms/.geotimezone.GeoTimeZoneService@1
+11-01 02:41:27.844  3566  3716 I Launcher.IconCache: Database bulk icon loading failed, using fallback bulk icon loading for: ComponentInfo{ua.nebo.watch/ua.nebo.watch.MainActivity}
+11-01 02:41:28.360   519  2458 W system_server: Long monitor contention with owner PackageManagerBg (570) at void com.android.server.pm.Settings$RuntimePermissionPersistence.lambda$writeStateForUser$0(java.lang.Object, boolean, com.android.server.pm.permission.LegacyPermissionDataProvider, com.android.server.utils.WatchedArrayMap, int, com.android.server.utils.WatchedArrayMap, android.os.Handler)(Settings.java:5798) waiters=0 in void com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.notifyPackageUse(java.lang.String, int) for 498ms
+11-01 02:41:28.365   519  2485 W system_server: Long monitor contention with owner PackageManagerBg (570) at void com.android.server.pm.Settings$RuntimePermissionPersistence.lambda$writeStateForUser$0(java.lang.Object, boolean, com.android.server.pm.permission.LegacyPermissionDataProvider, com.android.server.utils.WatchedArrayMap, int, com.android.server.utils.WatchedArrayMap, android.os.Handler)(Settings.java:5798) waiters=1 in void com.android.server.pm.PackageManagerService.setEnabledSettings(java.util.List, int, java.lang.String) for 471ms
+11-01 02:41:28.366   519  2256 W system_server: Long monitor contention with owner PackageManagerBg (570) at void com.android.server.pm.Settings$RuntimePermissionPersistence.lambda$writeStateForUser$0(java.lang.Object, boolean, com.android.server.pm.permission.LegacyPermissionDataProvider, com.android.server.utils.WatchedArrayMap, int, com.android.server.utils.WatchedArrayMap, android.os.Handler)(Settings.java:5798) waiters=3 in void com.android.server.pm.PackageManagerService.setEnabledSettings(java.util.List, int, java.lang.String) for 280ms
+11-01 02:41:28.370   519   981 W system_server: Long monitor contention with owner PackageManagerBg (570) at void com.android.server.pm.Settings$RuntimePermissionPersistence.lambda$writeStateForUser$0(java.lang.Object, boolean, com.android.server.pm.permission.LegacyPermissionDataProvider, com.android.server.utils.WatchedArrayMap, int, com.android.server.utils.WatchedArrayMap, android.os.Handler)(Settings.java:5798) waiters=2 in void com.android.server.pm.PackageManagerService.setEnabledSettings(java.util.List, int, java.lang.String) for 319ms
+11-01 02:41:28.374   519  2462 W system_server: Long monitor contention with owner PackageManagerBg (570) at void com.android.server.pm.Settings$RuntimePermissionPersistence.lambda$writeStateForUser$0(java.lang.Object, boolean, com.android.server.pm.permission.LegacyPermissionDataProvider, com.android.server.utils.WatchedArrayMap, int, com.android.server.utils.WatchedArrayMap, android.os.Handler)(Settings.java:5798) waiters=4 in void com.android.server.pm.PreferredActivityHelper.replacePreferredActivity(com.android.server.pm.Computer, com.android.server.pm.WatchedIntentFilter, int, android.content.ComponentName[], android.content.ComponentName, int) for 261ms
+11-01 02:41:29.633  1681  2195 I BistoHotwordHelper: getHotwordActive::active query: null, watch: false, devices connected: []
+11-01 02:41:30.703     0     0 I logd    : start watching /data/system/packages.list ...
+11-01 02:41:30.773   519   539 I ServiceWatcher: [RealLocationTimeZoneProviderProxy] connected to {com.google.android.gms/com.google.android.gms.geotimezone.GeoTimeZoneService}
+11-01 02:41:33.788  1431  4140 I NearbyDiscovery: FastPair: backfillHasWatchPaired, set to false [CONTEXT service_id=265 ]
+11-01 02:41:36.370   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{62ec471 com.google.android.googlequicksearchbox/10132} BLOCKED
+11-01 02:41:36.370   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{22a4256 com.google.android.apps.messaging/10129} BLOCKED
+11-01 02:41:36.370   519   573 I AppsFilter: interaction: PackageSetting{36f8194 ua.nebo.watch/10192} -> PackageSetting{b8a2d7 com.google.android.settings.intelligence/10118} BLOCKED
+11-01 02:41:38.453  1431  4064 I FontLog : Package ua.nebo.watch has no metadata [CONTEXT service_id=132 ]
+11-01 02:41:38.459  1486  3529 I BlockstoreStorage: Clearing Blockstore Data for package ua.nebo.watch [CONTEXT service_id=258 ]
+11-01 02:41:40.512  3359  3359 W ua.nebo.watch: Accessing hidden method Landroid/view/MotionEvent;->getEventTimeNano()J (unsupported, reflection, allowed)
