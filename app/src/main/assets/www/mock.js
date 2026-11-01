@@ -81,7 +81,7 @@
       version: '1.1 (браузер)'
     }),
     getPreview: () => face(),
-    requestThumbs: () => { const out = {}; ['map', 'home', 'neon', 'radar', 'ring', 'tiles', 'dusk'].forEach((st) => { out[st] = face(st); }); emit('thumbs', out); },
+    requestThumbs: () => { const out = {}; ['map', 'home', 'aurora', 'retro', 'mountains', 'vyshyvanka', 'cosmos'].forEach((st) => { out[st] = face(st); }); emit('thumbs', out); },
     setPref: (k, v) => { prefs[k] = v === 'true' ? true : v === 'false' ? false : (k === 'timeStyle' || k === 'pushInterval' ? +v : v); },
     scan: (start) => {
       if (!start) return;

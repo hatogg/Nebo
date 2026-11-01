@@ -87,9 +87,13 @@ class MainActivity : Activity(), Watch.Listener {
                     "kharkiv_red" to "Харківська область",
                     "lviv_calm" to "Львівська область",
                 )
-                for ((name, home) in cases) for (style in Prefs.ALL_STYLES) {
+                for ((name, home) in cases) for (style in Prefs.ALL_STYLES.filter { Prefs.usesAlerts(it) }) {
                     val bmp = r.render(410, 502, withRecent, home, style)
                     java.io.File(dir, "${name}_$style.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
+                }
+                for (style in Prefs.ART_STYLES) {
+                    val bmp = r.render(410, 502, withRecent, "м. Київ", style)
+                    java.io.File(dir, "art_$style.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
                 }
             }
             var live: Result<AlertState> = Result.failure(IllegalStateException("not tried"))
@@ -102,7 +106,7 @@ class MainActivity : Activity(), Watch.Listener {
             }
             java.io.File(dir, "live.txt").writeText(log.toString() + live.fold({ "OK " + describe(it) }, { "FAIL " + it }))
             live.getOrNull()?.let { st ->
-                for (style in Prefs.ALL_STYLES) {
+                for (style in Prefs.ALL_STYLES.filter { Prefs.usesAlerts(it) }) {
                     val bmp = r.render(410, 502, st, "Київська область", style)
                     java.io.File(dir, "live_$style.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
                 }
@@ -255,7 +259,7 @@ class MainActivity : Activity(), Watch.Listener {
             val p = Watch.prefs
             var repush = false
             when (key) {
-                "home" -> { p.home = value; repush = true }
+                "home" -> { p.home = value; repush = Prefs.usesAlerts(p.faceStyle) }
                 "faceStyle" -> { p.faceStyle = value; repush = true }
                 "timeStyle" -> {
                     p.timeStyle = value.toIntOrNull() ?: 0
@@ -266,7 +270,7 @@ class MainActivity : Activity(), Watch.Listener {
                 "autoPush" -> p.autoPush = value == "true"
                 "alertNotify" -> p.alertNotify = value == "true"
                 "yellowNotify" -> p.yellowNotify = value == "true"
-                "showRecent" -> { p.showRecent = value == "true"; repush = true }
+                "showRecent" -> { p.showRecent = value == "true"; repush = Prefs.usesAlerts(p.faceStyle) }
                 "pushInterval" -> p.pushIntervalSec = (value.toIntOrNull() ?: 900).coerceIn(30, 3600)
                 "statusCard" -> { p.statusCard = value == "true"; Watch.resetStatusCache() }
                 "statusWeather" -> { p.statusWeather = value == "true"; Watch.resetStatusCache() }

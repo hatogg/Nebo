@@ -264,6 +264,8 @@ class NeboService : Service() {
         /** Підпис усього, що видно на циферблаті: тривоги + налаштування. */
         fun signatureOf(st: AlertState): String {
             val p = Watch.prefs
+            // Декоративний циферблат не змінюється від тривог — не перезаписуємо його при кожній зміні на карті
+            if (!Prefs.usesAlerts(p.faceStyle)) return "art#" + p.faceStyle + "#" + p.timeStyle
             val sig = if (p.showRecent) st.signature else st.copy(raions = st.raions.filterValues { it != AlertState.RECENT }).signature
             return sig + "#" + p.home + "#" + p.faceStyle + "#" + p.timeStyle + "#" + p.showRecent
         }

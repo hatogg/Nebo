@@ -12,7 +12,7 @@ class Prefs(context: Context) {
         get() = sp.getString("home", "м. Київ")!!
         set(v) = sp.edit().putString("home", v).apply()
 
-    /** Циферблат: один із [ALL_STYLES] ("map" — карта України, "home" — моя область і міні-карта тощо). */
+    /** Циферблат: один із [ALL_STYLES] ("map" — карта України, "home" — моя область і міні-карта, решта — декоративні). */
     var faceStyle: String
         get() = sp.getString("faceStyle", STYLE_MAP)!!.let { if (it in ALL_STYLES) it else STYLE_MAP }
         set(v) = sp.edit().putString("faceStyle", if (v in ALL_STYLES) v else STYLE_MAP).apply()
@@ -129,12 +129,17 @@ class Prefs(context: Context) {
     companion object {
         const val STYLE_MAP = "map"
         const val STYLE_HOME = "home"
-        const val STYLE_NEON = "neon"
-        const val STYLE_RADAR = "radar"
-        const val STYLE_RING = "ring"
-        const val STYLE_TILES = "tiles"
-        const val STYLE_DUSK = "dusk"
-        val ALL_STYLES = listOf(STYLE_MAP, STYLE_HOME, STYLE_NEON, STYLE_RADAR, STYLE_RING, STYLE_TILES, STYLE_DUSK)
+        // Декоративні циферблати без карти тривог
+        const val STYLE_AURORA = "aurora"
+        const val STYLE_RETRO = "retro"
+        const val STYLE_MOUNTAINS = "mountains"
+        const val STYLE_VYSHYVANKA = "vyshyvanka"
+        const val STYLE_COSMOS = "cosmos"
+        val ART_STYLES = setOf(STYLE_AURORA, STYLE_RETRO, STYLE_MOUNTAINS, STYLE_VYSHYVANKA, STYLE_COSMOS)
+        val ALL_STYLES = listOf(STYLE_MAP, STYLE_HOME, STYLE_AURORA, STYLE_RETRO, STYLE_MOUNTAINS, STYLE_VYSHYVANKA, STYLE_COSMOS)
+
+        /** Чи циферблат залежить від тривог (декоративні не треба перезаписувати при змінах на карті). */
+        fun usesAlerts(style: String) = style !in ART_STYLES
         const val POLICY_ALL = "all"
         const val POLICY_HOME = "home"
     }
