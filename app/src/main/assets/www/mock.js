@@ -29,7 +29,9 @@
   const alertsJson = () => { const [red, yellow] = counts(); return { fetchedAt: Date.now() - 8000, source: 'alerts.in.ua', red, yellow, home: prefs.home, homeShort: shortOf(prefs.home), homeLevel: homeLevel(), homePartial: false, homeSince: Date.now() - 23 * 60000, sig: JSON.stringify(lv) + prefs.home, error: null }; };
   const COL = { 4: '#E5383B', 3: '#A9282C', 2: '#F2B51E', 1: '#4A2A30', 0: '#252833' };
 
-  function face() {
+  // У браузері малюємо лише два базові стилі; решта показується як «Карта України»
+  function face(style) {
+    const fs = style || prefs.faceStyle;
     const W = 410, H = 502, c = document.createElement('canvas'); c.width = W; c.height = H;
     const x = c.getContext('2d'); x.fillStyle = '#000'; x.fillRect(0, 0, W, H);
     const path = (rings) => { x.beginPath(); rings.forEach((ring) => { ring.split(' ').forEach((p, i) => { const [a, b] = p.split(',').map(Number); i ? x.lineTo(a, b) : x.moveTo(a, b); }); x.closePath(); }); };
@@ -43,7 +45,7 @@
     }
     x.textAlign = 'center';
     const L = homeLevel(), [red, yellow] = counts();
-    if (prefs.faceStyle === 'home') {
+    if (fs === 'home') {
       const bg = L >= 3 ? '#3B0E12' : L === 2 ? '#3A2D05' : '#0F2A1B', fg = L >= 3 ? '#FF5A5F' : L === 2 ? '#FFC93C' : '#3DDC84';
       x.fillStyle = bg; x.beginPath(); x.roundRect(16, 166, 378, 160, 28); x.fill();
       x.fillStyle = fg; x.font = '46px Unb'; x.fillText(L >= 3 ? 'ТРИВОГА' : L === 2 ? 'ЗАГРОЗА' : 'ТИХО', 205, 234);
@@ -78,7 +80,8 @@
       })),
       version: '1.1 (браузер)'
     }),
-    getPreview: face,
+    getPreview: () => face(),
+    requestThumbs: () => { const out = {}; ['map', 'home', 'neon', 'radar', 'ring', 'tiles', 'dusk'].forEach((st) => { out[st] = face(st); }); emit('thumbs', out); },
     setPref: (k, v) => { prefs[k] = v === 'true' ? true : v === 'false' ? false : (k === 'timeStyle' || k === 'pushInterval' ? +v : v); },
     scan: (start) => {
       if (!start) return;

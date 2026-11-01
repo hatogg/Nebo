@@ -55,10 +55,16 @@
 
   <section class="card">
     <h2>Циферблат</h2>
-    <div class="seg" id="faceSeg">
-      <button data-v="map">Карта України</button>
-      <button data-v="home">Моя область</button>
+    <div class="faces" id="faceList">
+      <button data-v="map"><i class="mini"><img alt=""><b>09:30</b></i><span>Карта України</span></button>
+      <button data-v="home"><i class="mini"><img alt=""><b>09:30</b></i><span>Моя область</span></button>
+      <button data-v="neon"><i class="mini"><img alt=""><b>09:30</b></i><span>Неон</span></button>
+      <button data-v="radar"><i class="mini"><img alt=""><b>09:30</b></i><span>Радар</span></button>
+      <button data-v="ring"><i class="mini"><img alt=""><b>09:30</b></i><span>Кільце</span></button>
+      <button data-v="tiles"><i class="mini"><img alt=""><b>09:30</b></i><span>Плитки</span></button>
+      <button data-v="dusk"><i class="mini"><img alt=""><b>09:30</b></i><span>Сутінки</span></button>
     </div>
+    <p id="faceHint" class="muted small face-hint"></p>
     <div class="label">Колір годинника</div>
     <div class="swatches" id="timeSw">
       <button data-v="0" title="Білий"><i style="background:#fff"></i>Білий</button>

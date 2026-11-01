@@ -12,10 +12,10 @@ class Prefs(context: Context) {
         get() = sp.getString("home", "м. Київ")!!
         set(v) = sp.edit().putString("home", v).apply()
 
-    /** "map" — карта України, "home" — моя область і міні-карта. */
+    /** Циферблат: один із [ALL_STYLES] ("map" — карта України, "home" — моя область і міні-карта тощо). */
     var faceStyle: String
-        get() = sp.getString("faceStyle", STYLE_MAP)!!
-        set(v) = sp.edit().putString("faceStyle", v).apply()
+        get() = sp.getString("faceStyle", STYLE_MAP)!!.let { if (it in ALL_STYLES) it else STYLE_MAP }
+        set(v) = sp.edit().putString("faceStyle", if (v in ALL_STYLES) v else STYLE_MAP).apply()
 
     /** Стиль цифр годинника: 0 білий, 1 чорний, 2 жовтий, 3 зелений, 4 сірий. */
     var timeStyle: Int
@@ -129,6 +129,12 @@ class Prefs(context: Context) {
     companion object {
         const val STYLE_MAP = "map"
         const val STYLE_HOME = "home"
+        const val STYLE_NEON = "neon"
+        const val STYLE_RADAR = "radar"
+        const val STYLE_RING = "ring"
+        const val STYLE_TILES = "tiles"
+        const val STYLE_DUSK = "dusk"
+        val ALL_STYLES = listOf(STYLE_MAP, STYLE_HOME, STYLE_NEON, STYLE_RADAR, STYLE_RING, STYLE_TILES, STYLE_DUSK)
         const val POLICY_ALL = "all"
         const val POLICY_HOME = "home"
     }

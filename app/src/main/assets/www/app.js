@@ -8,6 +8,15 @@
   let lastAlertsSig = '';
 
   const TIME_COLORS = ['#ffffff', '#111111', '#FFD338', '#7CF06A', '#9AA0AA'];
+  const FACE_HINTS = {
+    map: 'Уся карта по районах, ваш район обведено білим.',
+    home: 'Великий статус вашого району і міні-карта з кількістю областей у тривозі.',
+    neon: 'Карта з неоновими контурами: райони з тривогою світяться.',
+    radar: 'Ваш район у центрі радара, навколо — сусідні райони й області.',
+    ring: 'Кільце з усіх областей, зафарбованих за рівнем; у центрі — ваш статус.',
+    tiles: 'Кожна область — плитка на своєму місці, як на схемі метро.',
+    dusk: 'Вечірнє небо із зорями; колір обрію підказує статус вашого району.'
+  };
   const STATE_TEXT = {
     CONNECTED: 'На зв\'язку', PRE_CONNECTED: 'Налаштовую…', CONNECTING: 'Підключаюсь…',
     PRE_CONNECTING: 'Чекаю на годинник…', DISCONNECTED: 'Не на зв\'язку'
@@ -42,8 +51,14 @@
     refreshPreview();
   }
 
-  function refreshPreview() {
+  // thumbs=false — коли змінився лише вибір циферблата, мініатюри перемальовувати не треба
+  function refreshPreview(thumbs) {
     try { $('preview').src = A.getPreview(); } catch (e) { /* ignore */ }
+    if (thumbs !== false && A.requestThumbs) { try { A.requestThumbs(); } catch (e) { /* ignore */ } }
+  }
+
+  function renderThumbs(data) {
+    $('faceList').querySelectorAll('button').forEach((b) => { const src = data[b.dataset.v]; if (src) b.querySelector('img').src = src; });
   }
 
   function renderAll() { renderWatch(); renderAlerts(); renderPrefs(); renderPerm(); $('ver').textContent = 'Небо ' + (S.version || ''); }
@@ -105,7 +120,8 @@
 
   function renderPrefs() {
     const p = S.prefs;
-    setSeg('faceSeg', p.faceStyle);
+    setSeg('faceList', p.faceStyle);
+    $('faceHint').textContent = FACE_HINTS[p.faceStyle] || '';
     setSeg('policySeg', p.pushPolicy);
     setSeg('intervalSeg', p.pushInterval);
     $('yellowNotify').checked = p.yellowNotify;
@@ -122,6 +138,7 @@
     document.querySelector('.time').style.color = tc;
     const d = new Date();
     $('fakeTime').textContent = hhmm(d.getTime());
+    document.querySelectorAll('.mini b').forEach((m) => { m.textContent = hhmm(d.getTime()); m.style.color = tc; });
     $('fakeDate').textContent = ['НД', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'][d.getDay()] + ' ' + d.getDate();
   }
 
@@ -222,7 +239,12 @@
   };
   $('pushBtn').onclick = () => { A.pushNow(); toast('Готую циферблат…'); };
   $('homeBtn').onclick = regionSheet;
-  $('faceSeg').onclick = (e) => { const v = e.target.dataset && e.target.dataset.v; if (!v) return; A.setPref('faceStyle', v); S.prefs.faceStyle = v; renderPrefs(); refreshPreview(); };
+  $('faceList').onclick = (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    const v = b.dataset.v; if (v === S.prefs.faceStyle) return;
+    A.setPref('faceStyle', v); S.prefs.faceStyle = v; renderPrefs(); refreshPreview(false);
+    b.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+  };
   $('policySeg').onclick = (e) => { const v = e.target.dataset && e.target.dataset.v; if (!v) return; A.setPref('pushPolicy', v); S.prefs.pushPolicy = v; renderPrefs(); };
   $('timeSw').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; A.setPref('timeStyle', b.dataset.v); S.prefs.timeStyle = +b.dataset.v; renderPrefs(); };
   $('alertNotify').onchange = (e) => { A.setPref('alertNotify', String(e.target.checked)); S.prefs.alertNotify = e.target.checked; };
@@ -264,6 +286,9 @@
         }
         case 'scan':
           scanList = data.devices || []; renderScan(data.done, data.error);
+          break;
+        case 'thumbs':
+          renderThumbs(data);
           break;
         case 'perm':
           S.perm = data; renderPerm();

@@ -87,7 +87,7 @@ class MainActivity : Activity(), Watch.Listener {
                     "kharkiv_red" to "Харківська область",
                     "lviv_calm" to "Львівська область",
                 )
-                for ((name, home) in cases) for (style in listOf(Prefs.STYLE_MAP, Prefs.STYLE_HOME)) {
+                for ((name, home) in cases) for (style in Prefs.ALL_STYLES) {
                     val bmp = r.render(410, 502, withRecent, home, style)
                     java.io.File(dir, "${name}_$style.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
                 }
@@ -102,7 +102,7 @@ class MainActivity : Activity(), Watch.Listener {
             }
             java.io.File(dir, "live.txt").writeText(log.toString() + live.fold({ "OK " + describe(it) }, { "FAIL " + it }))
             live.getOrNull()?.let { st ->
-                for (style in listOf(Prefs.STYLE_MAP, Prefs.STYLE_HOME)) {
+                for (style in Prefs.ALL_STYLES) {
                     val bmp = r.render(410, 502, st, "Київська область", style)
                     java.io.File(dir, "live_$style.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
                 }
@@ -230,11 +230,24 @@ class MainActivity : Activity(), Watch.Listener {
         @JavascriptInterface
         fun getPreview(): String {
             val p = Watch.prefs
-            val bmp = FaceRenderer(this@MainActivity).render(410, 502, NeboService.current, p.home, p.faceStyle, p.showRecent)
-            val out = ByteArrayOutputStream()
-            bmp.compress(Bitmap.CompressFormat.PNG, 100, out)
-            bmp.recycle()
-            return "data:image/png;base64," + Base64.encodeToString(out.toByteArray(), Base64.NO_WRAP)
+            return dataUrl(FaceRenderer(this@MainActivity).render(410, 502, NeboService.current, p.home, p.faceStyle, p.showRecent))
+        }
+
+        /** Мініатюри всіх циферблатів для вибору; малюємо у фоні й надсилаємо подією "thumbs". */
+        @JavascriptInterface
+        fun requestThumbs() {
+            val gen = thumbGen.incrementAndGet()
+            thumbExec.execute {
+                if (gen != thumbGen.get()) return@execute
+                val p = Watch.prefs
+                val st = NeboService.current
+                val out = JSONObject()
+                runCatching {
+                    val r = FaceRenderer(this@MainActivity)
+                    for (style in Prefs.ALL_STYLES) out.put(style, dataUrl(r.render(176, 216, st, p.home, style, p.showRecent)))
+                }.onFailure { timber.log.Timber.w(it, "thumbs failed") }
+                if (gen == thumbGen.get()) runOnUiThread { send("thumbs", out) }
+            }
         }
 
         @JavascriptInterface
@@ -339,6 +352,16 @@ class MainActivity : Activity(), Watch.Listener {
         fun openUrl(url: String) = runOnUiThread {
             runCatching { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))) }
         }
+    }
+
+    private val thumbExec = java.util.concurrent.Executors.newSingleThreadExecutor()
+    private val thumbGen = java.util.concurrent.atomic.AtomicInteger()
+
+    private fun dataUrl(bmp: Bitmap): String {
+        val out = ByteArrayOutputStream()
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, out)
+        bmp.recycle()
+        return "data:image/png;base64," + Base64.encodeToString(out.toByteArray(), Base64.NO_WRAP)
     }
 
     private fun diagHeader(): String =
